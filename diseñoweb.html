@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diseño Web y UX/UI - Carolain</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+     :root {
+            --marca-rosa: #c39ea0;
+            --marca-rojo: #b46345;
+            --marca-beige: #f2e6d8;
+            --marca-oro: #d4af37;
+            --marca-negro: #000000;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-center">
+           <div class="logo-container">
+                <img id="logo-header-oscuro" class="logo logo-oscuro" src="logo marca profesional carolain rincon produccionesss para modo oscuro_Mesa de trabajo 1.svg" alt="logo carolain producción modo oscuro">
+                <img id="logo-header-claro" class="logo logo-claro" src="logo modo claro 2_Mesa de trabajo 1.svg" alt="logo carolain producción modo claro">
+            </div>
+            <button id="theme-switch" aria-label="Cambiar modo claro/oscuro" tabindex="0" class="theme-switch-btn">
+                <span class="switch-label"></span>
+            </button>
+             <nav class="navbar">
+                <a href="animaciones.html">Animaciones</a>
+                <a href="branding.html">Branding</a>
+                <a href="fotografia.html">Fotografía</a>
+                <a href="publicidad.html">Publicidad</a>
+                <a href="producciondevideos.html">Producción de Videos</a>
+                <a href="contacto.html">Contacto</a>
+            </nav>
+        </div>
+    </header>
+    <main class="main-content">
+        <h1 class="main-title">Diseño Web y UX/UI</h1>
+        <img class="service-img" src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" alt="Diseño Web y UX/UI">
+        <div class="service-desc">
+            Transformamos ideas en experiencias digitales excepcionales. Creamos diseños UX/UI intuitivos y visualmente atractivos, optimizados para una navegación fluida. Desde el prototipado hasta el desarrollo web con HTML, CSS y JavaScript, construimos sitios web responsivos y funcionales.
+        </div>
+        <ul class="service-list">
+            <li><span>Diseño UX/UI:</span> Prototipado, wireframes y diseño visual.</li>
+            <li><span>Desarrollo Web:</span> HTML, CSS, JavaScript y sitios responsivos.</li>
+            <li><span>Optimización:</span> Experiencia de usuario y rendimiento en todas las plataformas.</li>
+        </ul>
+    </main>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" title="Terminos y condiciones"><span>Terminos y Condiciones</span> </a>
+                <a href="#" title="Politicas de privacidad">Politicas de privacidad</a>
+            </div>
+            <div class="footer-icons">
+                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" title="Github"><i class="fab fa-github"></i></a>
+                <a href="#" title="Tiktok"><i class="fab fa-tiktok"></i></a>
+                <a href="#" title="Youtube"><i class="fab fa-youtube"></i></a>
+                <a href="#" title="Spotify"><i class="fab fa-spotify"></i></a>
+                <a href="#" title="Gmail"><i class="fas fa-envelope"></i></a>
+            </div>
+            <div class="footer-info">
+                <span><i class="fas fa-map-marker-alt"></i>Medellín, Colombia</span>
+            </div>
+        </div>
+    </footer>
+    <script>
+    // Switch de tema claro/oscuro SOLO cambia la clase, no manipula src ni iconos
+    (function() {
+        const switchBtn = document.getElementById('theme-switch');
+        let isDark = true;
+        function setTheme(dark) {
+            isDark = dark;
+            if (dark) {
+                document.body.classList.remove('claro');
+            } else {
+                document.body.classList.add('claro');
+            }
+        }
+        switchBtn.addEventListener('click', function() {
+            setTheme(!isDark);
+        });
+        switchBtn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                setTheme(!isDark);
+            }
+        });
+        setTheme(true);
+    })();
+    </script>
+</body>
+</html> 

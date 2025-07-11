@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fotografía - Carolain</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background: #000; color: #fff; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; }
+        .header { width: 100%; padding: 20px 40px; box-sizing: border-box; text-align: center; }
+        .logo-container { margin-bottom: 30px; }
+        .logo { max-width: 200px; height: auto; }
+        .navbar { display: flex; justify-content: center; gap: 40px; margin-top: 20px; }
+        nav a { color: #fff; text-decoration: none; font-size: 1.1rem; position: relative; transition: color 0.2s; padding: 10px 20px; border-radius: 5px; }
+        nav a:hover, nav a:focus { text-shadow: 0 0 8px #FFD700, 0 0 16px #FFD700, 0 0 24px #FFD700; color: #FFD700; background: rgba(255, 215, 0, 0.1); }
+        .main-content { max-width: 900px; margin: 0 auto; padding: 60px 20px; text-align: center; }
+        .main-title { font-size: 2.7rem; font-weight: bold; margin-bottom: 30px; color: #FFD700; text-shadow: 0 0 10px rgba(255,215,0,0.5); }
+        .service-img { width: 100%; max-width: 500px; border-radius: 18px; margin-bottom: 32px; box-shadow: 0 8px 32px 0 rgba(255,215,0,0.15), 0 1.5px 10px 0 rgba(0,0,0,0.45); }
+        .service-desc { font-size: 1.2rem; color: #fff; margin-bottom: 32px; line-height: 1.7; }
+        .service-list { text-align: left; display: inline-block; margin: 0 auto 40px auto; color: #FFD700; font-size: 1.1rem; }
+        .service-list li { margin-bottom: 12px; color: #fff; }
+        .service-list li span { color: #FFD700; font-weight: bold; }
+        .footer { background: transparent; padding: 24px 0 16px 0; display: flex; justify-content: center; align-items: center; margin-top: 80px; }
+        .footer-content { display: flex; flex-direction: column; align-items: center; width: 100%; gap: 12px; }
+        .footer-icons { display: flex; gap: 32px; justify-content: center; font-size: 1.7rem; }
+        .footer-icons a { color: #fff; transition: text-shadow 0.3s, color 0.3s; }
+        .footer-icons a:hover, .footer-icons a:focus { text-shadow: 0 0 8px #FFD700, 0 0 16px #FFD700; color: #FFD700; }
+        .footer-info { display: flex; gap: 32px; justify-content: center; align-items: center; font-size: 1rem; color: #fff; }
+        .footer-info i { margin-right: 8px; color: #FFD700; }
+        @media (max-width: 768px) { .main-title { font-size: 2rem; } .navbar { flex-direction: column; gap: 20px; } .service-img { max-width: 98vw; } }
+    </style>
+    <style>
+    .photo-section {
+        margin: 60px auto 30px auto;
+        max-width: 900px;
+        text-align: center;
+    }
+    .photo-block {
+        margin-bottom: 60px;
+    }
+    .photo-title {
+        color: #FFD700;
+        font-size: 1.5rem;
+        margin: 32px 0 12px 0;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+    .photo-desc {
+        color: #fff;
+        font-size: 1.1rem;
+        margin-bottom: 18px;
+    }
+    .carousel-foto-container {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto 0 auto;
+        position: relative;
+        user-select: none;
+    }
+    .carousel-foto {
+        position: relative;
+        overflow: hidden;
+        border-radius: 20px;
+        box-shadow: 0 8px 32px 0 rgba(255,215,0,0.15), 0 1.5px 10px 0 rgba(0,0,0,0.45);
+        background: #181818;
+    }
+    .carousel-foto .carousel-track {
+        display: flex;
+        transition: transform 0.7s cubic-bezier(.77,0,.18,1);
+        will-change: transform;
+    }
+    .carousel-foto .carousel-img {
+        min-width: 100%;
+        height: 350px;
+        object-fit: cover;
+        border-radius: 20px;
+        box-shadow: 0 4px 24px rgba(255,215,0,0.10);
+        transition: transform 0.5s, box-shadow 0.5s;
+        cursor: pointer;
+        background: #000;
+    }
+    .carousel-foto .carousel-img:hover {
+        transform: scale(1.04) rotate(-1deg);
+        box-shadow: 0 8px 32px rgba(255,215,0,0.18);
+    }
+    .carousel-foto .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0,0,0,0.5);
+        border: none;
+        color: #FFD700;
+        font-size: 2rem;
+        padding: 10px 18px;
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 2;
+        transition: background 0.2s;
+    }
+    .carousel-foto .carousel-btn:hover {
+        background: #FFD700;
+        color: #181818;
+    }
+    .carousel-foto .carousel-btn.prev { left: 10px; }
+    .carousel-foto .carousel-btn.next { right: 10px; }
+    .carousel-foto-container .carousel-indicators {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin: 18px 0 0 0;
+    }
+    .carousel-foto-container .carousel-indicators button {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        border: none;
+        background: #FFD70044;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.3s;
+    }
+    .carousel-foto-container .carousel-indicators button.active {
+        background: #FFD700;
+        transform: scale(1.2);
+    }
+    @media (max-width: 768px) {
+        .carousel-foto .carousel-img { height: 200px; }
+        .carousel-foto-container { max-width: 98vw; }
+    }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-center">
+           <div class="logo-container">
+                <img id="logo-header-oscuro" class="logo logo-oscuro" src="logo marca profesional carolain rincon produccionesss para modo oscuro_Mesa de trabajo 1.svg" alt="logo carolain producción modo oscuro">
+                <img id="logo-header-claro" class="logo logo-claro" src="logo modo claro 2_Mesa de trabajo 1.svg" alt="logo carolain producción modo claro">
+            </div>
+            <button id="theme-switch" aria-label="Cambiar modo claro/oscuro" tabindex="0" class="theme-switch-btn">
+                <span class="switch-label"></span>
+            </button>
+            <nav class="navbar">
+                <a href="animaciones.html">Animaciones</a>
+                <a href="branding.html">Branding</a>
+                <a href="diseñoweb.html">Diseño Web</a>
+                <a href="publicidad.html">Publicidad</a>
+                <a href="producciondevideos.html">Producción de Videos</a>
+                <a href="contacto.html">Contacto</a>
+            </nav>
+        </div>
+    </header>
+    <main class="main-content">
+        <h1 class="main-title">FOTOGRAFÍA</h1>
+        <img class="service-img" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Fotografía">
+        <div class="service-desc">
+            Capturamos la esencia de cada momento a través de lentes especializadas. Ofrecemos fotografía de producto y publicitaria, documental, fotoperiodística, culinaria y de naturaleza, siempre con un enfoque creativo y profesional.
+        </div>
+       
+        <div class="photo-section">
+            <div class="photo-block">
+                <h2 class="photo-title">FOTOGRAFÍA PUBLICITARIA Y DE PRODUCTO</h2>
+                <p class="photo-desc">Imágenes impactantes y profesionales para catálogos, e-commerce, campañas y marcas. Cada foto resalta los atributos y la esencia de tu producto, potenciando su valor visual y comercial.</p>
+                <div class="carousel-foto-container">
+                    <div class="carousel-foto">
+                        <button class="carousel-btn prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+                        <div class="carousel-track">
+                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                        </div>
+                        <button class="carousel-btn next" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="carousel-indicators"></div>
+                </div>
+            </div>
+            <div class="photo-block">
+                <h2 class="photo-title">FOTOGRAFÍA DOCUMENTAL Y FOTOPERIODÍSTICA</h2>
+                <p class="photo-desc">Historias reales y reportajes visuales que capturan la esencia de personas, lugares y acontecimientos. Cada imagen narra un relato auténtico y conmovedor.</p>
+                <div class="carousel-foto-container">
+                    <div class="carousel-foto">
+                        <button class="carousel-btn prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+                        <div class="carousel-track">
+                            <!-- 20 imágenes, puedes cambiar las URLs -->
+                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                        </div>
+                        <button class="carousel-btn next" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="carousel-indicators"></div>
+                </div>
+            </div>
+            <div class="photo-block">
+                <h2 class="photo-title">FOTOGRAFÍA GASTRONÓMICA</h2>
+                <p class="photo-desc">La belleza y el detalle de la comida capturados en imágenes que despiertan los sentidos. Ideal para restaurantes, chefs y marcas culinarias.</p>
+                <div class="carousel-foto-container">
+                    <div class="carousel-foto">
+                        <button class="carousel-btn prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+                        <div class="carousel-track">
+                            <!-- 20 imágenes -->
+                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                        </div>
+                        <button class="carousel-btn next" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="carousel-indicators"></div>
+                </div>
+            </div>
+            <div class="photo-block">
+                <h2 class="photo-title">FOTOGRAFÍA DE NATURALEZA</h2>
+                <p class="photo-desc">Capturamos la belleza natural en su máxima expresión: paisajes, flora, fauna y detalles únicos del entorno. Imágenes que transmiten la grandeza y la serenidad de la naturaleza.</p>
+                <div class="carousel-foto-container">
+                    <div class="carousel-foto">
+                        <button class="carousel-btn prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+                        <div class="carousel-track">
+                            <!-- 20 imágenes -->
+                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                        </div>
+                        <button class="carousel-btn next" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="carousel-indicators"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" title="Terminos y condiciones">Terminos y Condiciones</a>
+                <a href="#" title="Politicas de privacidad">Politicas de privacidad</a>
+            </div>
+            <div class="footer-icons">
+                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" title="Github"><i class="fab fa-github"></i></a>
+                <a href="#" title="Tiktok"><i class="fab fa-tiktok"></i></a>
+                <a href="#" title="Youtube"><i class="fab fa-youtube"></i></a>
+                <a href="#" title="Spotify"><i class="fab fa-spotify"></i></a>
+                <a href="#" title="Gmail"><i class="fas fa-envelope"></i></a>
+            </div>
+            <div class="footer-info">
+                <span><i class="fas fa-map-marker-alt"></i> Manrique, Medellín, Colombia</span>
+            </div>
+        </div>
+    </footer>
+    <script>
+    // Carruseles independientes para cada bloque de fotografía
+    document.querySelectorAll('.carousel-foto-container').forEach(function(container, idx) {
+        const track = container.querySelector('.carousel-track');
+        const items = Array.from(container.querySelectorAll('.carousel-img'));
+        const prevBtn = container.querySelector('.carousel-btn.prev');
+        const nextBtn = container.querySelector('.carousel-btn.next');
+        const indicators = container.querySelector('.carousel-indicators');
+        let currentIndex = 0;
+        let autoSlide;
+
+        function updateCarousel(index) {
+            track.style.transform = `translateX(-${index * 100}%)`;
+            indicators.querySelectorAll('button').forEach((btn, i) => {
+                btn.classList.toggle('active', i === index);
+            });
+        }
+
+        function createIndicators() {
+            indicators.innerHTML = '';
+            items.forEach((_, i) => {
+                const btn = document.createElement('button');
+                if (i === 0) btn.classList.add('active');
+                btn.addEventListener('click', () => {
+                    currentIndex = i;
+                    updateCarousel(currentIndex);
+                    resetAutoSlide();
+                });
+                indicators.appendChild(btn);
+            });
+        }
+
+        function nextItem() {
+            currentIndex = (currentIndex + 1) % items.length;
+            updateCarousel(currentIndex);
+        }
+        function prevItem() {
+            currentIndex = (currentIndex - 1 + items.length) % items.length;
+            updateCarousel(currentIndex);
+        }
+        function resetAutoSlide() {
+            clearInterval(autoSlide);
+            autoSlide = setInterval(nextItem, 4000);
+        }
+
+        prevBtn.addEventListener('click', () => { prevItem(); resetAutoSlide(); });
+        nextBtn.addEventListener('click', () => { nextItem(); resetAutoSlide(); });
+
+        createIndicators();
+        updateCarousel(currentIndex);
+        autoSlide = setInterval(nextItem, 4000);
+
+        // Swipe para móvil
+        let startX = 0;
+        track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
+        track.addEventListener('touchend', e => {
+            let endX = e.changedTouches[0].clientX;
+            if (endX - startX > 50) { prevItem(); resetAutoSlide(); }
+            if (startX - endX > 50) { nextItem(); resetAutoSlide(); }
+        });
+    });
+    </script>
+    <script>
+    // Switch de tema claro/oscuro SOLO cambia la clase, no manipula src ni iconos
+    (function() {
+        const switchBtn = document.getElementById('theme-switch');
+        let isDark = true;
+        function setTheme(dark) {
+            isDark = dark;
+            if (dark) {
+                document.body.classList.remove('claro');
+            } else {
+                document.body.classList.add('claro');
+            }
+        }
+        switchBtn.addEventListener('click', function() {
+            setTheme(!isDark);
+        });
+        switchBtn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                setTheme(!isDark);
+            }
+        });
+        setTheme(true);
+    })();
+    </script>
+</body>
+</html> 

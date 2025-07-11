@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producción de Videos - Carolain</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --marca-rosa: #c39ea0;
+            --marca-rojo: #b46345;
+            --marca-beige: #f2e6d8;
+            --marca-oro: #d4af37;
+            --marca-negro: #000000;
+        }
+        body {
+            background: var(--marca-negro);
+            color: var(--marca-beige);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        html, body {
+            overflow-x: hidden;
+        }
+        .header {
+            background: #000 !important;
+            color: var(--marca-oro);
+            width: 100%;
+            text-align: center;
+            padding: 24px 0 16px 0;
+        }
+        .footer {
+            background: #000 !important;
+            padding: 48px 0 32px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 80px;
+        }
+        nav.navbar {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin: 0 auto;
+            padding: 0;
+        }
+        nav.navbar a {
+            color: var(--marca-beige);
+            text-decoration: none;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 0 18px;
+            padding: 10px 22px;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+        }
+        nav.navbar a:focus, nav.navbar a:hover {
+            background: #d4af37;
+            color: #fff !important;
+            outline: 2px solid #d4af37;
+        }
+        .main-title, .main-subtitle {
+            color: #d4af37;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .main-title {
+            font-size: 3.2rem;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+        }
+        button, .theme-switch-btn {
+            background: var(--marca-oro);
+            color: var(--marca-negro);
+            border: none;
+            border-radius: 50px;
+            padding: 10px 28px;
+            font-size: 1.1rem;
+            font-family: inherit;
+            font-weight: bold;
+            margin: 12px 0;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            position: relative;
+        }
+        button:focus, .theme-switch-btn:focus {
+            outline: 2px solid var(--marca-rosa);
+        }
+        button:hover, .theme-switch-btn:hover {
+            background: var(--marca-rosa);
+            color: var(--marca-negro);
+        }
+        /* Modo claro */
+        body.claro {
+            background: #c39ea0 !important;
+            color: var(--marca-negro);
+        }
+        body.claro .header, body.claro .footer {
+            background: var(--marca-rosa);
+            color: var(--marca-beige);
+        }
+        body.claro nav.navbar a {
+            color: #fff !important;
+        }
+        body.claro nav.navbar a:focus, body.claro nav.navbar a:hover {
+            background: #d4af37;
+            color: #f2e6d8;
+            outline: 2px solid #d4af37;
+        }
+        body.claro .main-title, body.claro .main-subtitle {
+            color: #d4af37;
+        }
+        body.claro button, body.claro .theme-switch-btn {
+            background: var(--marca-negro);
+            color: var(--marca-oro);
+        }
+        body.claro button:hover, body.claro .theme-switch-btn:hover {
+            background: var(--marca-rosa);
+            color: var(--marca-negro);
+        }
+        body.claro .service-desc,
+        body.claro .service-list,
+        body.claro .service-list li {
+            color: #000;
+        }
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+        /* Logo dual para modo claro/oscuro */
+        .logo {
+            max-width: 190px;
+            height: auto;
+            margin: 0 auto 10px auto;
+            display: block;
+            opacity: 0;
+            transform: scale(0.85);
+            animation: logoFadeIn 1.1s cubic-bezier(.77,0,.18,1) 0.2s forwards;
+            transition: transform 0.3s cubic-bezier(.77,0,.18,1);
+            pointer-events: auto !important;
+            cursor: pointer;
+        }
+        .logo.logo-oscuro {
+            display: block;
+        }
+        .logo.logo-claro {
+            display: none;
+        }
+        /* Elimina cualquier regla que oculte .logo-oscuro en modo claro */
+        /* body.claro .logo.logo-oscuro { display: none; } */
+        body.claro .logo.logo-claro {
+            display: block;
+        }
+        .logo:hover {
+            transform: scale(1.35);
+            filter: drop-shadow(0 0 18px #d4af37) drop-shadow(0 0 32px #d4af37);
+            transition: filter 0.3s;
+        }
+        @keyframes logoFadeIn {
+            from { opacity: 0; transform: scale(0.85); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .header-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            min-height: 1px;
+        }
+        .theme-switch-btn {
+            font-size: 1rem;
+            padding: 10px 28px;
+        }
+        /* Icono de tema solo con CSS */
+        .theme-switch-btn .switch-label {
+            display: none;
+        }
+        .theme-switch-btn::after {
+            content: '\f185'; /* fa-sun */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 1.2em;
+            margin-left: 8px;
+            vertical-align: middle;
+            transition: content 0.3s;
+        }
+        body.claro .theme-switch-btn::after {
+            content: '\f186'; /* fa-moon */
+        }
+        @media (max-width: 768px) {
+            nav.navbar { flex-direction: column; gap: 18px; }
+            .logo { max-width: 130px; }
+        }
+        .footer-icons a {
+            color: #f2e6d8;
+            transition: color 0.2s, transform 0.25s, filter 0.25s;
+        }
+        .footer-icons a:focus,
+        .footer-icons a:hover {
+            color: #d4af37;
+            transform: scale(1.25);
+            filter: drop-shadow(0 0 8px #d4af37) drop-shadow(0 0 18px #d4af37);
+        }
+        body.claro .footer-icons a {
+            color: #f2e6d8 !important;
+        }
+        body.claro .footer-icons a:focus,
+        body.claro .footer-icons a:hover {
+            color: #d4af37;
+            transform: scale(1.25);
+            filter: drop-shadow(0 0 8px #d4af37) drop-shadow(0 0 18px #d4af37);
+        }
+        .footer-icons {
+            display: flex;
+            gap: 56px;
+            justify-content: center;
+            font-size: 1.7rem;
+            margin-bottom: 24px;
+        }
+        @media (max-width: 768px) {
+            .footer-icons { font-size: 1.3rem; }
+        }
+        a, a:visited {
+            color: #f2e6d8 !important;
+            text-decoration: none !important;
+        }
+        a:focus, a:hover {
+            color: #d4af37 !important;
+            text-decoration: underline !important;
+        }
+        body.claro a, body.claro a:visited {
+            color: #000 !important;
+        }
+        body.claro a:focus, body.claro a:hover {
+            color: #f2e6d8 !important;
+        }
+        footer.footer .footer-content .footer-info,
+        footer.footer .footer-content .footer-info span,
+        footer.footer .footer-content .footer-info i {
+            font-size: 1.25rem !important;
+            font-weight: 700 !important;
+            letter-spacing: 1px !important;
+            line-height: 1.2 !important;
+        }
+        /* Elimino la regla que sobrescribe el tamaño y peso de los links del footer */
+        /* footer.footer .footer-content .footer-links a,
+        footer.footer .footer-content .footer-links a:visited {
+            font-size: 1rem !important;
+            font-weight: 800 !important;
+            letter-spacing: 1px !important;
+        } */
+
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px !important;
+            font-weight: bold !important;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+            color: #d4af37;
+        }
+
+        body.claro .footer-links a {
+            color: #f2e6d8 !important;
+        }
+        body.claro .footer-links a:hover {
+            color: #d4af37 !important;
+        }
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 22px;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 18px 0 0 0;
+        }
+        .footer-links {
+            display: flex;
+            flex-direction: row;
+            gap: 36px;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px !important;
+            font-weight: bold;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+            color: #d4af37;
+        }
+        body.claro .footer-links a {
+            color: #fff;
+            font-size: 18px !important;
+        }
+        body.claro .footer-links a:hover {
+            color: #d4af37;
+        }
+        .footer-icons {
+            margin: 10px 0 10px 0;
+        }
+        .footer-info {
+            margin-top: 8px;
+        }
+        .footer-info {
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.3rem;
+            color: #fff;
+        }
+
+        .footer-info span {
+            color: #fff !important;
+        }
+        .footer-info i {
+            color: #FFD700 !important;
+        }
+
+        body.claro .footer-info span {
+            color: #fff !important;
+        }
+        @media (max-width: 600px) {
+            .footer-content {
+                gap: 14px;
+            }
+            .footer-links {
+                gap: 16px;
+                flex-direction: column;
+                margin-bottom: 6px;
+            }
+            .footer-icons {
+                gap: 18px;
+            }
+        }
+        /* Banner de video */
+        .banner-video {
+            position: relative;
+            width: 100vw;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            max-width: 100vw;
+            overflow: hidden;
+            min-height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .banner-img {
+            width: 100vw;
+            min-height: 220px;
+            max-height: 340px;
+            object-fit: cover;
+            display: block;
+            filter: brightness(0.45) saturate(1.1);
+        }
+        .banner-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .banner-text .main-title {
+            color: #d4af37 !important;
+            font-size: 2.7rem;
+            text-shadow: 0 2px 18px #000, 0 0 8px #d4af37;
+            margin-bottom: 10px;
+        }
+        
+        body.claro .banner-text .main-title {
+            color: #d4af37 !important;
+        }
+        .banner-text .main-subtitle {
+            color: #fff !important;
+            font-size: 1.25rem;
+            text-shadow: 0 2px 10px #000, 0 0 6px #d4af37;
+        }
+        @media (max-width: 900px) {
+            .banner-img {
+                max-height: 220px;
+            }
+            .banner-text .main-title {
+                font-size: 2rem;
+            }
+            .banner-text .main-subtitle {
+                font-size: 1rem;
+            }
+        }
+        @media (max-width: 600px) {
+            .banner-img {
+                max-height: 140px;
+                min-height: 100px;
+            }
+            .banner-text .main-title {
+                font-size: 1.2rem;
+            }
+            .banner-text .main-subtitle {
+                font-size: 0.9rem;
+            }
+        }
+        .video-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 32px;
+            margin: 36px 0 36px 0;
+            width: 100%;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .mini-video {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(212,175,55,0.10);
+            background: #181818;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.25s, box-shadow 0.25s, filter 0.25s;
+            border: 2px solid transparent;
+        }
+        .mini-video:hover, .mini-video:focus {
+            transform: scale(1.06);
+            box-shadow: 0 0 18px #d4af37, 0 0 32px #d4af37;
+            border: 2px solid #d4af37;
+            filter: brightness(1.08) saturate(1.2);
+            outline: none;
+        }
+        @media (max-width: 900px) {
+            .video-gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                gap: 18px;
+            }
+        }
+        @media (max-width: 600px) {
+            .video-gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+        }
+        /* Lightbox de video */
+        .video-lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s;
+        }
+        .video-lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+        .lightbox-content {
+            position: relative;
+            background: transparent;
+            border-radius: 18px;
+            box-shadow: 0 0 32px #d4af37cc, 0 0 80px #000a;
+            padding: 0;
+            max-width: 90vw;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        #lightbox-video {
+            width: 80vw;
+            max-width: 900px;
+            max-height: 70vh;
+            border-radius: 12px;
+            background: #000;
+            box-shadow: 0 0 18px #d4af3799;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: -38px;
+            right: 0;
+            background: var(--marca-oro);
+            color: var(--marca-negro);
+            border: none;
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            box-shadow: 0 0 8px #d4af37cc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: background 0.2s, color 0.2s;
+        }
+        .lightbox-close:hover, .lightbox-close:focus {
+            background: var(--marca-rosa);
+            color: var(--marca-negro);
+            outline: 2px solid var(--marca-oro);
+        }
+        @media (max-width: 900px) {
+            #lightbox-video {
+                width: 98vw;
+                max-width: 98vw;
+                max-height: 50vh;
+            }
+        }
+        @media (max-width: 600px) {
+            .lightbox-content {
+                max-width: 98vw;
+                max-height: 60vh;
+            }
+            #lightbox-video {
+                width: 98vw;
+                max-width: 98vw;
+                max-height: 40vh;
+            }
+            .lightbox-close {
+                top: -32px;
+                right: 0;
+                width: 32px;
+                height: 32px;
+                font-size: 1.1rem;
+            }
+        }
+        .service-desc {
+            background: transparent;
+            color: inherit;
+            border-radius: 0 18px 18px 0;
+            max-width: 800px;
+            margin: 36px auto 24px auto;
+            padding: 22px 32px 22px 22px;
+            font-size: 1.45rem;
+            font-weight: 500;
+            letter-spacing: 0.2px;
+            line-height: 1.7;
+        }
+        .service-list {
+            text-align: left;
+            display: block;
+            margin: 0 auto 40px auto;
+            font-size: 1.45rem;
+            padding: 18px 28px 18px 28px;
+            background: transparent;
+            color: inherit;
+            max-width: 800px;
+            font-weight: 500;
+            letter-spacing: 0.2px;
+            line-height: 1.7;
+        }
+        .service-list li {
+            margin-bottom: 14px;
+            color: inherit;
+            font-weight: 500;
+            padding-left: 0.5em;
+            position: relative;
+        }
+        .service-list li span {
+            color: var(--marca-rojo);
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            font-size: 1.08em;
+        }
+        .service-list li::before {
+            content: '\2022';
+            color: var(--marca-oro);
+            font-size: 1.3em;
+            position: absolute;
+            left: -1.1em;
+            top: 0.1em;
+            font-family: inherit;
+            font-weight: normal;
+            animation: none;
+        }
+        .service-list li.pre {
+            padding-left: 2em;
+        }
+        .service-list li.pre::before {
+            content: '\f303'; /* fa-pencil-alt */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            color: var(--marca-oro);
+            font-size: 1.2em;
+            position: absolute;
+            left: 0.2em;
+            top: 0.1em;
+            transition: color 0.3s, filter 0.3s, transform 0.3s;
+        }
+        .service-list li.grab {
+            padding-left: 2em;
+        }
+        .service-list li.grab::before {
+            content: '\f03d'; /* fa-film (FontAwesome) */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            color: var(--marca-oro);
+            font-size: 1.2em;
+            position: absolute;
+            left: 0.2em;
+            top: 0.1em;
+            transition: color 0.3s, filter 0.3s, transform 0.3s;
+        }
+        .service-list li.post {
+            padding-left: 2em;
+        }
+        .service-list li.post::before {
+            content: '\f0d0'; /* fa-magic (FontAwesome) */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            color: var(--marca-oro);
+            font-size: 1.2em;
+            position: absolute;
+            left: 0.2em;
+            top: 0.1em;
+            transition: color 0.3s, filter 0.3s, transform 0.3s;
+        }
+        /* Animación pulse dorado para los íconos personalizados al hacer hover */
+        @keyframes iconPulse {
+            0% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 0 #d4af37);
+            }
+            40% {
+                transform: scale(1.25);
+                filter: drop-shadow(0 0 12px #d4af37);
+            }
+            60% {
+                transform: scale(1.15);
+                filter: drop-shadow(0 0 8px #d4af37);
+            }
+            100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 0 #d4af37);
+            }
+        }
+        .service-list li.pre:hover::before,
+        .service-list li.pre:focus::before,
+        .service-list li.grab:hover::before,
+        .service-list li.grab:focus::before {
+            animation: iconPulse 0.6s cubic-bezier(.77,0,.18,1);
+        }
+        /* Animación especial para la varita mágica */
+        @keyframes magicWand {
+            0% {
+                transform: rotate(0deg) scale(1);
+                color: var(--marca-oro);
+                filter: drop-shadow(0 0 0 #d4af37);
+            }
+            30% {
+                transform: rotate(-25deg) scale(1.2);
+                color: #fffbe6;
+                filter: drop-shadow(0 0 16px #fffbe6);
+            }
+            60% {
+                transform: rotate(18deg) scale(1.15);
+                color: #b46345;
+                filter: drop-shadow(0 0 18px #b46345);
+            }
+            100% {
+                transform: rotate(0deg) scale(1);
+                color: var(--marca-oro);
+                filter: drop-shadow(0 0 0 #d4af37);
+            }
+        }
+        .service-list li.post:hover::before,
+        .service-list li.post:focus::before {
+            animation: magicWand 0.8s cubic-bezier(.77,0,.18,1);
+        }
+        /* Cards de etapas */
+        .etapas-cards {
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+            margin: 36px auto 40px auto;
+            flex-wrap: wrap;
+            max-width: 1100px;
+        }
+        .etapa-card {
+            background: rgba(242,230,216,0.12);
+            border-radius: 18px;
+            box-shadow: 0 2px 18px var(--marca-rosa, #c39ea0, 0.08);
+            padding: 32px 28px 28px 28px;
+            min-width: 260px;
+            max-width: 340px;
+            flex: 1 1 260px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .etapa-card:hover {
+            box-shadow: 0 4px 32px var(--marca-oro, #d4af37, 0.18);
+            transform: translateY(-6px) scale(1.03);
+        }
+        .etapa-icon {
+            font-size: 2.7rem;
+            margin-bottom: 18px;
+            color: var(--marca-oro);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.3s, filter 0.3s, transform 0.3s;
+        }
+        .etapa-titulo span {
+            color: var(--marca-rojo);
+            font-size: 1.25rem;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+        .etapa-desc {
+            color: inherit;
+            font-size: 1.08rem;
+            margin-top: 8px;
+        }
+        @media (max-width: 900px) {
+            .etapas-cards {
+                gap: 18px;
+            }
+            .etapa-card {
+                min-width: 180px;
+                max-width: 98vw;
+                padding: 22px 10px 18px 10px;
+            }
+        }
+        @media (max-width: 600px) {
+            .etapas-cards {
+                flex-direction: column;
+                gap: 16px;
+                align-items: center;
+            }
+            .etapa-card {
+                min-width: 0;
+                width: 98vw;
+                max-width: 98vw;
+            }
+        }
+        /* Animación pulse dorado para los íconos de las cards */
+        @keyframes iconPulse {
+            0% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 0 #d4af37);
+            }
+            40% {
+                transform: scale(1.25);
+                filter: drop-shadow(0 0 12px #d4af37);
+            }
+            60% {
+                transform: scale(1.15);
+                filter: drop-shadow(0 0 8px #d4af37);
+            }
+            100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 0 #d4af37);
+            }
+        }
+        .etapa-card .etapa-icon.pre:hover,
+        .etapa-card .etapa-icon.pre:focus {
+            animation: iconPulse 0.6s cubic-bezier(.77,0,.18,1);
+        }
+        .etapa-card .etapa-icon.grab:hover,
+        .etapa-card .etapa-icon.grab:focus {
+            animation: iconPulse 0.6s cubic-bezier(.77,0,.18,1);
+        }
+        /* Animación especial para la varita mágica */
+        @keyframes magicWand {
+            0% {
+                transform: rotate(0deg) scale(1);
+                color: var(--marca-oro);
+                filter: drop-shadow(0 0 0 #d4af37);
+            }
+            30% {
+                transform: rotate(-25deg) scale(1.2);
+                color: #fffbe6;
+                filter: drop-shadow(0 0 16px #fffbe6);
+            }
+            60% {
+                transform: rotate(18deg) scale(1.15);
+                color: #b46345;
+                filter: drop-shadow(0 0 18px #b46345);
+            }
+            100% {
+                transform: rotate(0deg) scale(1);
+                color: var(--marca-oro);
+                filter: drop-shadow(0 0 0 #d4af37);
+            }
+        }
+        .etapa-card .etapa-icon.post:hover,
+        .etapa-card .etapa-icon.post:focus {
+            animation: magicWand 0.8s cubic-bezier(.77,0,.18,1);
+        }
+        /* Video destacado + galería secundaria */
+        .video-destacado-galeria {
+            max-width: 900px;
+            margin: 48px auto 56px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+        }
+        .video-destacado-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        .video-destacado {
+            width: 100%;
+            max-width: 980px;
+            aspect-ratio: 16/9;
+            min-height: 380px;
+            border-radius: 28px;
+            box-shadow: 0 0 48px #d4af37, 0 0 96px #d4af3722;
+            border: 3px solid var(--marca-oro);
+            background: #000;
+            cursor: pointer;
+            transition: box-shadow 0.3s, border 0.3s;
+        }
+        .video-destacado:hover {
+            box-shadow: 0 0 48px #d4af37, 0 0 96px #d4af37;
+            border: 3px solid var(--marca-rosa);
+        }
+        .galeria-secundaria {
+            display: flex;
+            gap: 18px;
+            justify-content: center;
+            width: 100%;
+        }
+        .video-secundario {
+            width: 180px;
+            aspect-ratio: 16/9;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px #d4af3722;
+            border: 2px solid transparent;
+            object-fit: cover;
+            background: #000;
+            cursor: pointer;
+            transition: box-shadow 0.3s, border 0.3s, transform 0.2s;
+        }
+        .video-secundario:hover, .video-secundario:focus {
+            box-shadow: 0 0 16px #d4af37, 0 0 32px #d4af37;
+            border: 2px solid var(--marca-oro);
+            transform: scale(1.06);
+        }
+        @media (max-width: 1100px) {
+            .video-destacado { max-width: 98vw; min-height: 0; }
+        }
+        @media (max-width: 700px) {
+            .video-destacado { max-width: 98vw; min-height: 0; }
+            .galeria-secundaria { gap: 8px; }
+            .video-secundario { width: 28vw; min-width: 90px; }
+        }
+        @media (max-width: 500px) {
+            .video-destacado-galeria { gap: 12px; }
+            .video-secundario { width: 32vw; min-width: 70px; }
+        }
+        /* Colores de texto en cards según modo */
+        .card, .video-destacado-container, .galeria-secundaria, .video-card-text, .etapa-card, .servicio-card {
+            color: var(--marca-blanco);
+        }
+        body.claro .card,
+        body.claro .video-destacado-container,
+        body.claro .video-card-text,
+        body.claro .etapa-card,
+        body.claro .servicio-card {
+            color: var(--marca-negro);
+            background: #fff !important;
+        }
+        
+        body.claro .galeria-secundaria {
+            background: #c39ea0 !important;
+        }
+        
+        body.claro .video-destacado-container {
+            border-radius: 28px !important;
+        }
+        body.claro .etapa-desc,
+        body.claro .service-desc,
+        body.claro .service-list,
+        body.claro .service-list li {
+            color: var(--marca-negro);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-center">
+            <div class="logo-container">
+                <img id="logo-header-oscuro" class="logo logo-oscuro" src="logo marca profesional carolain rincon produccionesss para modo oscuro_Mesa de trabajo 1.svg" alt="logo carolain producción modo oscuro">
+            </div>
+            <button id="theme-switch" aria-label="Cambiar modo claro/oscuro" tabindex="0" class="theme-switch-btn">
+                <span class="switch-label"></span>
+            </button>
+            <nav class="navbar">
+                <a href="animaciones.html">Animaciones</a>
+                <a href="branding.html">Branding</a>
+                <a href="diseñoweb.html">Diseño Web</a>
+                <a href="fotografia.html">Fotografía</a>
+                <a href="publicidad.html">Publicidad</a>
+                <a href="contacto.html">Contacto</a>
+            </nav>
+        </div>
+    </header>
+    <main class="main-content">
+        <section class="banner-video">
+            <img class="banner-img" src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1600&q=80" alt="Producción de Videos banner">
+            <div class="banner-text">
+                <h1 class="main-title">Producción de Videos</h1>
+                <div class="main-subtitle">No solo se graban imágenes: <br>Se capturan emociones, se traducen ideas en 
+                    símbolos, y se tejen relatos que el alma entiende antes que la mente. <br>Cada video es un espejo 
+                    del deseo, una estrategia con corazón y una historia que deja huella.</div>
+            </div>
+            
+        </section>
+        <div class="service-desc">
+            Se transforman ideas en historias visuales que impactan. Desde la preproducción hasta la postproducción,
+            se cuida cada detalle para que tu mensaje cobre vida en la pantalla. Hay servicio de creación de videos 
+            publicitarios, documentales, stop motion y 
+            más, con calidad profesional y creatividad única.
+        </div>
+        <div class="etapas-cards">
+            <div class="etapa-card">
+                <div class="etapa-icon pre"><!-- icono animado --></div>
+                <div class="etapa-titulo"><span>Preproducción</span></div>
+                <div class="etapa-desc">Planificación, guiones, storyboards, locaciones, casting y presupuesto.</div>
+            </div>
+            <div class="etapa-card">
+                <div class="etapa-icon grab"><!-- icono animado --></div>
+                <div class="etapa-titulo"><span>Grabación</span></div>
+                <div class="etapa-desc">Dirección, rodaje, cámara, iluminación, sonido en set.</div>
+            </div>
+            <div class="etapa-card">
+                <div class="etapa-icon post"><!-- icono animado --></div>
+                <div class="etapa-titulo"><span>Postproducción</span></div>
+                <div class="etapa-desc">Edición, VFX, corrección de color, diseño de sonido y render final.</div>
+            </div>
+        </div>
+        <div class="video-destacado-galeria">
+            <div class="video-destacado-container">
+                <video id="video-destacado" class="video-destacado" src="https://www.w3schools.com/html/mov_bbb.mp4" controls poster="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80"></video>
+            </div>
+            <div class="galeria-secundaria">
+                <video class="video-secundario" src="https://www.w3schools.com/html/movie.mp4" muted loop playsinline poster="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80"></video>
+                <video class="video-secundario" src="https://www.w3schools.com/html/mov_bbb.mp4" muted loop playsinline poster="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80"></video>
+                <video class="video-secundario" src="https://www.w3schools.com/html/movie.mp4" muted loop playsinline poster="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"></video>
+            </div>
+        </div>
+        <div id="video-lightbox" class="video-lightbox">
+            <div class="lightbox-content">
+                <button class="lightbox-close" aria-label="Cerrar"><i class="fas fa-times"></i></button>
+                <video id="lightbox-video" controls autoplay></video>
+            </div>
+        </div>
+        
+    </main>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" title="Terminos y condiciones"><span>Terminos y Condiciones</span> </a>
+                <a href="#" title="Politicas de privacidad">Politicas de privacidad</a>
+            </div>
+            <div class="footer-icons">
+                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" title="Github"><i class="fab fa-github"></i></a>
+                <a href="#" title="Tiktok"><i class="fab fa-tiktok"></i></a>
+                <a href="#" title="Youtube"><i class="fab fa-youtube"></i></a>
+                <a href="#" title="Spotify"><i class="fab fa-spotify"></i></a>
+                <a href="#" title="Gmail"><i class="fas fa-envelope"></i></a>
+            </div>
+            <div class="footer-info">
+                <span><i class="fas fa-map-marker-alt"></i>Medellín, Colombia</span>
+            </div>
+        </div>
+    </footer>
+    <script>
+    // (Aquí puedes agregar la nueva programación o dejar vacío por ahora)
+    </script>
+    <script>
+    // Switch de tema claro/oscuro SOLO cambia la clase, no manipula src ni iconos
+    (function() {
+        const switchBtn = document.getElementById('theme-switch');
+        let isDark = true;
+        function setTheme(dark) {
+            isDark = dark;
+            if (dark) {
+                document.body.classList.remove('claro');
+            } else {
+                document.body.classList.add('claro');
+            }
+        }
+        switchBtn.addEventListener('click', function() {
+            setTheme(!isDark);
+        });
+        switchBtn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                setTheme(!isDark);
+            }
+        });
+        setTheme(true);
+    })();
+    </script>
+    <script>
+    // Insertar los iconos FontAwesome en las cards de etapas y mantener animaciones
+    document.addEventListener('DOMContentLoaded', function() {
+        const pre = document.querySelector('.etapa-icon.pre');
+        const grab = document.querySelector('.etapa-icon.grab');
+        const post = document.querySelector('.etapa-icon.post');
+        if (pre) pre.innerHTML = '<i class="fas fa-pencil-alt"></i>';
+        if (grab) grab.innerHTML = '<i class="fas fa-film"></i>';
+        if (post) post.innerHTML = '<i class="fas fa-magic"></i>';
+    });
+    </script>
+    <script>
+    // Lógica para video destacado + galería secundaria
+    (function() {
+        const videoDestacado = document.getElementById('video-destacado');
+        const secundarios = Array.from(document.querySelectorAll('.video-secundario'));
+        // Al hacer hover en los secundarios, preview animado
+        secundarios.forEach(video => {
+            video.addEventListener('mouseenter', () => {
+                video.play();
+            });
+            video.addEventListener('mouseleave', () => {
+                video.pause();
+                video.currentTime = 0;
+            });
+        });
+        // Al hacer clic en un secundario, pasa a ser el principal
+        secundarios.forEach(video => {
+            video.addEventListener('click', () => {
+                // Guardar src y poster actuales del principal
+                const srcPrincipal = videoDestacado.src;
+                const posterPrincipal = videoDestacado.poster;
+                // Cambiar src y poster
+                videoDestacado.src = video.src;
+                videoDestacado.poster = video.poster;
+                // Cambiar el secundario clicado por el anterior principal
+                video.src = srcPrincipal;
+                video.poster = posterPrincipal;
+                video.pause();
+                video.currentTime = 0;
+            });
+        });
+        // Lightbox al hacer clic en el video principal
+        videoDestacado.addEventListener('click', () => {
+            const lightbox = document.getElementById('video-lightbox');
+            const lightboxVideo = document.getElementById('lightbox-video');
+            lightbox.classList.add('active');
+            lightboxVideo.src = videoDestacado.src;
+            lightboxVideo.currentTime = 0;
+            lightboxVideo.muted = false;
+            lightboxVideo.play();
+        });
+    })();
+    </script>
+</body>
+</html> 

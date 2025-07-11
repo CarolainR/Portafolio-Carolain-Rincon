@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animaciones 2D y 3D - Carolain</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --marca-rosa: #c39ea0;
+            --marca-rojo: #b46345;
+            --marca-beige: #f2e6d8;
+            --marca-oro: #d4af37;
+            --marca-negro: #000000;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-center">
+           <div class="logo-container">
+                <img id="logo-header-oscuro" class="logo logo-oscuro" src="logo marca profesional carolain rincon produccionesss para modo oscuro_Mesa de trabajo 1.svg" alt="logo carolain producción modo oscuro">
+                <img id="logo-header-claro" class="logo logo-claro" src="logo modo claro 2_Mesa de trabajo 1.svg" alt="logo carolain producción modo claro">
+            </div>
+            <button id="theme-switch" aria-label="Cambiar modo claro/oscuro" tabindex="0" class="theme-switch-btn">
+                <span class="switch-label"></span>
+            </button>
+
+            <nav class="navbar">
+                <a href="animaciones.html">Animaciones</a>
+                <a href="branding.html">Branding</a>
+                <a href="diseñoweb.html">Diseño Web</a>
+                <a href="fotografia.html">Fotografía</a>
+                <a href="publicidad.html">Publicidad</a>
+                <a href="producciondevideos.html">Producción de Videos</a>
+                <a href="contacto.html">Contacto</a>
+            </nav>
+
+        </div>
+    </header>
+    <main class="main-content">
+        <h1 class="main-title">Animaciones 2D y 3D</h1>
+        <div class="carousel-animaciones-container">
+            <div class="carousel-animaciones">
+                <button class="carousel-btn prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+                <div class="carousel-track">
+                    <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" alt="Animación 1" class="carousel-img">
+                    <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" alt="Animación 2" class="carousel-img">
+                    <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" alt="Animación 3" class="carousel-img">
+                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Animación 4" class="carousel-img">
+                    <video class="carousel-img" controls poster="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80">
+                        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                        Tu navegador no soporta video HTML5.
+                    </video>
+                    <video class="carousel-img" controls poster="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80">
+                        <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+                        Tu navegador no soporta video HTML5.
+                    </video>
+                </div>
+                <button class="carousel-btn next" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="carousel-indicators"></div>
+        </div>
+        <div class="books-section">
+            <h2 class="book-title">Book Personaje 1</h2>
+            <iframe class="book-pdf" src="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" width="100%" height="400px" frameborder="0"></iframe>
+            <h2 class="book-title">Book Personaje 2</h2>
+            <iframe class="book-pdf" src="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" width="100%" height="400px" frameborder="0"></iframe>
+        </div>
+        <div class="youtube-section">
+            <h2 class="book-title">Video Teaser (Ejemplo)</h2>
+            <div class="youtube-video-container">
+                <iframe width="100%" height="400" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="service-desc">
+            Creamos personajes únicos y animaciones de alta calidad en 2D y 3D, diseñados a medida para cada proyecto. 
+            Desde el concepto hasta la animación final, damos vida a tus ideas con un estilo visual innovador, ideal 
+            para publicidad y brandign, tambien para cortometrajes u otros proyectos.
+        </div>
+        <ul class="service-list">
+            <li><span>Concepto y Diseño:</span> Desarrollo de personajes y escenarios.</li>
+            <li><span>Animación 2D:</span> Motion graphics, animación tradicional y riggin con Duik.</li>
+            <li><span>Animación 3D:</span> Modelado, rigging, texturizado y animación básica..</li>
+        </ul>
+    </main>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" title="Terminos y condiciones"><span>Terminos y Condiciones</span> </a>
+                <a href="#" title="Politicas de privacidad">Politicas de privacidad</a>
+            </div>
+            <div class="footer-icons">
+                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" title="Github"><i class="fab fa-github"></i></a>
+                <a href="#" title="Tiktok"><i class="fab fa-tiktok"></i></a>
+                <a href="#" title="Youtube"><i class="fab fa-youtube"></i></a>
+                <a href="#" title="Spotify"><i class="fab fa-spotify"></i></a>
+                <a href="#" title="Gmail"><i class="fas fa-envelope"></i></a>
+            </div>
+            <div class="footer-info">
+                <span><i class="fas fa-map-marker-alt"></i>Medellín, Colombia</span>
+            </div>
+        </div>
+    </footer>
+    <script>
+    // Carrusel interactivo para animaciones
+    const track = document.querySelector('.carousel-animaciones .carousel-track');
+    const items = Array.from(document.querySelectorAll('.carousel-animaciones .carousel-img'));
+    const prevBtn = document.querySelector('.carousel-animaciones .carousel-btn.prev');
+    const nextBtn = document.querySelector('.carousel-animaciones .carousel-btn.next');
+    const indicators = document.querySelector('.carousel-animaciones-container .carousel-indicators');
+    let currentIndex = 0;
+    let autoSlide;
+
+    function updateCarousel(index) {
+        track.style.transform = `translateX(-${index * 100}%)`;
+        document.querySelectorAll('.carousel-animaciones-container .carousel-indicators button').forEach((btn, i) => {
+            btn.classList.toggle('active', i === index);
+        });
+    }
+
+    function createIndicators() {
+        indicators.innerHTML = '';
+        items.forEach((_, i) => {
+            const btn = document.createElement('button');
+            if (i === 0) btn.classList.add('active');
+            btn.addEventListener('click', () => {
+                currentIndex = i;
+                updateCarousel(currentIndex);
+                resetAutoSlide();
+            });
+            indicators.appendChild(btn);
+        });
+    }
+
+    function nextItem() {
+        currentIndex = (currentIndex + 1) % items.length;
+        updateCarousel(currentIndex);
+    }
+    function prevItem() {
+        currentIndex = (currentIndex - 1 + items.length) % items.length;
+        updateCarousel(currentIndex);
+    }
+    function resetAutoSlide() {
+        clearInterval(autoSlide);
+        autoSlide = setInterval(nextItem, 4000);
+    }
+
+    prevBtn.addEventListener('click', () => { prevItem(); resetAutoSlide(); });
+    nextBtn.addEventListener('click', () => { nextItem(); resetAutoSlide(); });
+
+    createIndicators();
+    updateCarousel(currentIndex);
+    autoSlide = setInterval(nextItem, 4000);
+
+    // Swipe para móvil
+    let startX = 0;
+    track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
+    track.addEventListener('touchend', e => {
+        let endX = e.changedTouches[0].clientX;
+        if (endX - startX > 50) { prevItem(); resetAutoSlide(); }
+        if (startX - endX > 50) { nextItem(); resetAutoSlide(); }
+    });
+    </script>
+    <script>
+    // Switch de tema claro/oscuro SOLO cambia la clase, no manipula src ni iconos
+    (function() {
+        const switchBtn = document.getElementById('theme-switch');
+        let isDark = true;
+        function setTheme(dark) {
+            isDark = dark;
+            if (dark) {
+                document.body.classList.remove('claro');
+            } else {
+                document.body.classList.add('claro');
+            }
+        }
+        switchBtn.addEventListener('click', function() {
+            setTheme(!isDark);
+        });
+        switchBtn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                setTheme(!isDark);
+            }
+        });
+        setTheme(true);
+    })();
+    </script>
+</body>
+</html> 

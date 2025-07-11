@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Carolain</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --marca-rosa: #c39ea0;
+            --marca-rojo: #b46345;
+            --marca-beige: #f2e6d8;
+            --marca-oro: #d4af37;
+            --marca-negro: #000000;
+        }
+        body {
+            background: var(--marca-negro);
+            color: var(--marca-beige);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        .header, .footer {
+            background: var(--marca-negro);
+            color: var(--marca-oro);
+            width: 100%;
+            text-align: center;
+            padding: 24px 0 16px 0;
+        }
+        nav.navbar {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin: 0 auto;
+            padding: 0;
+        }
+        nav.navbar a {
+            color: var(--marca-beige);
+            text-decoration: none;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 0 18px;
+            padding: 10px 22px;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+        }
+        nav.navbar a:focus, nav.navbar a:hover {
+            background: #d4af37;
+            color: #fff !important;
+            outline: 2px solid #d4af37;
+        }
+        .main-title, .main-subtitle {
+            color: var(--marca-oro);
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        button, .theme-switch-btn {
+            background: var(--marca-oro);
+            color: var(--marca-negro);
+            border: none;
+            border-radius: 50px;
+            padding: 10px 28px;
+            font-size: 1.1rem;
+            font-family: inherit;
+            font-weight: bold;
+            margin: 12px 0;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            position: relative;
+        }
+        button:focus, .theme-switch-btn:focus {
+            outline: 2px solid var(--marca-rosa);
+        }
+        button:hover, .theme-switch-btn:hover {
+            background: var(--marca-rosa);
+            color: var(--marca-negro);
+        }
+        /* Modo claro */
+        body.claro {
+            background: var(--marca-beige);
+            color: var(--marca-negro);
+        }
+        body.claro .header, body.claro .footer {
+            background: var(--marca-rojo);
+            color: var(--marca-beige);
+        }
+        body.claro nav.navbar a {
+            color: var(--marca-negro);
+        }
+        body.claro nav.navbar a:focus, body.claro nav.navbar a:hover {
+            background: #d4af37;
+            color: #f2e6d8;
+            outline: 2px solid #d4af37;
+        }
+        body.claro .main-title, body.claro .main-subtitle {
+            color: var(--marca-oro);
+        }
+        body.claro button, body.claro .theme-switch-btn {
+            background: var(--marca-negro);
+            color: var(--marca-oro);
+        }
+        body.claro button:hover, body.claro .theme-switch-btn:hover {
+            background: var(--marca-rosa);
+            color: var(--marca-negro);
+        }
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+        /* Logo dual para modo claro/oscuro */
+        .logo {
+            max-width: 190px;
+            height: auto;
+            margin: 0 auto 10px auto;
+            display: block;
+            opacity: 0;
+            transform: scale(0.85);
+            animation: logoFadeIn 1.1s cubic-bezier(.77,0,.18,1) 0.2s forwards;
+            transition: transform 0.3s cubic-bezier(.77,0,.18,1);
+            pointer-events: auto !important;
+            cursor: pointer;
+        }
+        .logo.logo-oscuro {
+            display: block;
+        }
+        .logo.logo-claro {
+            display: none;
+        }
+        body.claro .logo.logo-oscuro {
+            display: none;
+        }
+        body.claro .logo.logo-claro {
+            display: block;
+        }
+        .logo:hover {
+            transform: scale(1.35);
+            filter: drop-shadow(0 0 18px #d4af37) drop-shadow(0 0 32px #d4af37);
+            transition: filter 0.3s;
+        }
+        @keyframes logoFadeIn {
+            from { opacity: 0; transform: scale(0.85); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .header-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            min-height: 1px;
+        }
+        .theme-switch-btn {
+            font-size: 1rem;
+            padding: 10px 28px;
+        }
+        /* Icono de tema solo con CSS */
+        .theme-switch-btn .switch-label {
+            display: none;
+        }
+        .theme-switch-btn::after {
+            content: '\f185'; /* fa-sun */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 1.2em;
+            margin-left: 8px;
+            vertical-align: middle;
+            transition: content 0.3s;
+        }
+        body.claro .theme-switch-btn::after {
+            content: '\f186'; /* fa-moon */
+        }
+        @media (max-width: 768px) {
+            nav.navbar { flex-direction: column; gap: 18px; }
+            .logo { max-width: 130px; }
+        }
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 22px;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 18px 0 0 0;
+        }
+        .footer-links {
+            display: flex;
+            flex-direction: row;
+            gap: 36px;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        .footer-links a {
+            padding: 6px 12px;
+        }
+        .footer-icons {
+            margin: 10px 0 10px 0;
+        }
+        .footer-info {
+            margin-top: 8px;
+        }
+        .footer-icons a {
+            color: #f2e6d8;
+            transition: color 0.2s, transform 0.25s, filter 0.25s;
+        }
+        .footer-icons a:focus,
+        .footer-icons a:hover {
+            color: #d4af37;
+            transform: scale(1.25);
+            filter: drop-shadow(0 0 8px #d4af37) drop-shadow(0 0 18px #d4af37);
+        }
+        body.claro .footer-icons a {
+            color: #000;
+        }
+        body.claro .footer-icons a:focus,
+        body.claro .footer-icons a:hover {
+            color: #d4af37;
+            transform: scale(1.25);
+            filter: drop-shadow(0 0 8px #d4af37) drop-shadow(0 0 18px #d4af37);
+        }
+        @media (max-width: 600px) {
+            .footer-content {
+                gap: 14px;
+            }
+            .footer-links {
+                gap: 16px;
+                flex-direction: column;
+                margin-bottom: 6px;
+            }
+            .footer-icons {
+                gap: 18px;
+            }
+        }
+        a, a:visited {
+            color: #f2e6d8 !important;
+            text-decoration: none !important;
+        }
+        a:focus, a:hover {
+            color: #d4af37 !important;
+            text-decoration: underline !important;
+        }
+        body.claro a, body.claro a:visited {
+            color: #000 !important;
+        }
+        body.claro a:focus, body.claro a:hover {
+            color: #f2e6d8 !important;
+        }
+        footer.footer .footer-content .footer-info,
+        footer.footer .footer-content .footer-info span,
+        footer.footer .footer-content .footer-info i {
+            font-size: 1.25rem !important;
+            font-weight: 700 !important;
+            letter-spacing: 1px !important;
+            line-height: 1.2 !important;
+        }
+        footer.footer .footer-content .footer-links a,
+        footer.footer .footer-content .footer-links a:visited {
+            font-size: 1rem !important;
+            font-weight: 800 !important;
+            letter-spacing: 1px !important;
+        }
+    </style>
+    <style>
+    .contact-inspiration {
+        font-size: 1.2rem;
+        color: #fff;
+        margin-bottom: 32px;
+        margin-top: -10px;
+        text-shadow: 0 0 4px #FFD70088, 0 0 8px #FFD70044;
+    }
+    </style>
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-center">
+            <div class="logo-container">
+                <a href="index.html">
+                    <img class="logo logo-oscuro" src="logo marca profesional carolain rincon produccionesss para modo oscuro_Mesa de trabajo 1.svg" alt="logo carolain producción modo oscuro">
+                    <img class="logo logo-claro" src="logo marca profesional carolain rincon produccioness para modo claro_Mesa de trabajo 1.svg" alt="logo carolain producción modo claro">
+                </a>
+            </div>
+            <button id="theme-switch" aria-label="Cambiar modo claro/oscuro" tabindex="0" class="theme-switch-btn">
+                <span class="switch-label"></span>
+            </button>
+            <nav class="navbar">
+                <a href="index.html">Inicio</a>
+                <a href="animaciones.html">Animaciones</a>
+                <a href="branding.html">Branding</a>
+                <a href="diseñoweb.html">Diseño Web</a>
+                <a href="fotografia.html">Fotografía</a>
+                <a href="publicidad.html">Publicidad</a>
+                <a href="sobremi.html">Sobre Mí</a>
+            </nav>
+        </div>
+    </header>
+    <main class="main-content">
+        <h1 class="main-title">Contáctame</h1>
+        <p class="contact-inspiration">¿Tienes una idea, un proyecto o simplemente quieres transformar tu marca? Estoy aquí para escucharte y ayudarte a crear algo único. Cuéntame tu historia, tus sueños o tus retos: juntos podemos convertirlos en experiencias visuales que impacten y conecten. ¡No dudes en escribirme, tu mensaje puede ser el inicio de algo extraordinario!</p>
+        <form class="contact-form" action="https://formsubmit.co/crproduccionmultimedia@gmail.com" method="POST">
+            <div>
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <div>
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div>
+                <label for="mensaje">Mensaje</label>
+                <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+            </div>
+            <input type="hidden" name="_subject" value="Nuevo mensaje de tu portafolio">
+            <button type="submit">Enviar mensaje</button>
+        </form>
+    </main>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" title="Terminos y condiciones"><span>Terminos y Condiciones</span> </a>
+                <a href="#" title="Politicas de privacidad">Politicas de privacidad</a>
+            </div>
+            <div class="footer-icons">
+                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" title="Github"><i class="fab fa-github"></i></a>
+                <a href="#" title="Tiktok"><i class="fab fa-tiktok"></i></a>
+                <a href="#" title="Youtube"><i class="fab fa-youtube"></i></a>
+                <a href="#" title="Spotify"><i class="fab fa-spotify"></i></a>
+                <a href="#" title="Gmail"><i class="fas fa-envelope"></i></a>
+            </div>
+            <div class="footer-info">
+                <span><i class="fas fa-map-marker-alt"></i>Medellín, Colombia</span>
+            </div>
+        </div>
+    </footer>
+    <script>
+    document.querySelector('.contact-form').addEventListener('submit', function(e) {
+        setTimeout(function() {
+            alert('¡Gracias por contactarnos! Nos comunicaremos lo más pronto posible.');
+            window.location.href = 'index.html';
+        }, 100);
+    });
+    </script>
+    <script>
+    // Switch de tema claro/oscuro SOLO cambia la clase, no manipula src ni iconos
+    (function() {
+        const switchBtn = document.getElementById('theme-switch');
+        let isDark = true;
+        function setTheme(dark) {
+            isDark = dark;
+            if (dark) {
+                document.body.classList.remove('claro');
+            } else {
+                document.body.classList.add('claro');
+            }
+        }
+        switchBtn.addEventListener('click', function() {
+            setTheme(!isDark);
+        });
+        switchBtn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                setTheme(!isDark);
+            }
+        });
+        setTheme(true);
+    })();
+    </script>
+</body>
+</html> 
