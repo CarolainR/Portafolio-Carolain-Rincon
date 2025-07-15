@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>politica de privacidad</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<style>
+
+    :root {
+            --marca-rosa: #c39ea0;
+            --marca-rojo: #b46345;
+            --marca-beige: #f2e6d8;
+            --marca-oro: #d4af37;
+            --marca-negro: #000000;
+        }
+    body {
+    background: #000;
+    color: #fff;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+    /* Modo claro */
+    body.claro {
+        background: #c39ea0;
+        color: #000;
+    }
+
+    .header {
+    width: 100%;
+    padding: 20px 40px;
+    box-sizing: border-box;
+    text-align: center;
+    background: #000;
+}
+
+/* Eliminar cualquier override de modo claro para el header */
+body.claro .header {
+    background: #000;
+}
+
+    .logo-container {
+        margin-bottom: 30px;
+    }
+
+    .logo {
+        max-width: 190px;
+        height: auto;
+        margin: 0 auto 10px auto;
+        display: block;
+        opacity: 0;
+        transform: scale(0.85);
+        animation: logoFadeIn 1.1s cubic-bezier(.77,0,.18,1) 0.2s forwards;
+        transition: transform 0.3s cubic-bezier(.77,0,.18,1);
+        pointer-events: auto !important;
+        cursor: pointer;
+    }
+    .logo:hover {
+        transform: scale(1.35);
+        filter: drop-shadow(0 0 18px #d4af37) drop-shadow(0 0 32px #d4af37);
+        transition: filter 0.3s;
+    }
+    @keyframes logoFadeIn {
+        from { opacity: 0; transform: scale(0.85); }
+        to { opacity: 1; transform: scale(1); }
+    }
+    @media (max-width: 768px) {
+        .logo { max-width: 130px; }
+    }
+
+    /* Logo dual para modo claro/oscuro */
+    .logo.logo-oscuro {
+        display: block;
+    }
+    .logo.logo-claro {
+        display: none;
+    }
+    body.claro .logo.logo-claro {
+        display: block;
+    }
+
+    /* Estilos para el switch de tema */
+    .theme-switch-btn {
+        background: #FFD700;
+        color: #000;
+        border: none;
+        border-radius: 50px;
+        padding: 10px 28px;
+        font-size: 1.1rem;
+        font-family: inherit;
+        font-weight: bold;
+        margin: 12px 0;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s;
+        position: relative;
+    }
+    .theme-switch-btn:focus {
+        outline: 2px solid #c39ea0;
+    }
+    .theme-switch-btn:hover {
+        background: #c39ea0;
+        color: #000;
+    }
+    body.claro .theme-switch-btn {
+        background: #000;
+        color: #FFD700;
+    }
+    body.claro .theme-switch-btn:hover {
+        background: #c39ea0;
+        color: #000;
+    }
+    /* Icono de tema solo con CSS */
+    .theme-switch-btn .switch-label {
+        display: none;
+    }
+    .theme-switch-btn::after {
+        content: '\f185'; /* fa-sun */
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        font-size: 1.2em;
+        margin-left: 8px;
+        vertical-align: middle;
+        transition: content 0.3s;
+    }
+    body.claro .theme-switch-btn::after {
+        content: '\f186'; /* fa-moon */
+    }
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px;
+}
+@media (max-width: 900px) {
+    .navbar {
+        gap: 18px;
+    }
+    nav a {
+        font-size: 0.98rem;
+        padding: 8px 12px;
+    }
+}
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        margin-top: 12px;
+    }
+    nav a {
+        font-size: 0.95rem;
+        padding: 10px 0;
+        width: 100%;
+        text-align: center;
+        border-radius: 8px;
+    }
+}
+
+nav a {
+    color: #fff !important;
+    text-decoration: none;
+    font-size: 1.1rem;
+    position: relative;
+    transition: color 0.2s;
+        padding: 10px 20px;
+        border-radius: 5px;
+}
+
+/* Eliminar override de modo claro */
+body.claro nav a {
+    color: #f2e6d8 !important;
+}
+
+nav a:hover, nav a:focus {
+    text-shadow: 0 0 8px #FFD700, 0 0 16px #FFD700, 0 0 24px #FFD700;
+    color: #FFD700;
+    transition: text-shadow 0.3s, color 0.3s;
+        background: rgba(255, 215, 0, 0.1);
+    }
+
+    /* Estilos para modo claro en navegación */
+    body.claro nav a {
+        color: #000;
+    }
+    body.claro nav a:hover, body.claro nav a:focus {
+        text-shadow: 0 0 8px #FFD700, 0 0 16px #FFD700, 0 0 24px #FFD700;
+        color: #FFD700;
+        background: rgba(255, 215, 0, 0.1);
+    } 
+
+    .main-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 60px 20px;
+        text-align: center;
+    }
+.privacy-content {
+    text-align: left;
+    max-width: 800px;
+    margin: 0 auto;
+    background: #f2e6d8;
+    color: #000;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    padding: 38px 48px;
+    font-size: 1.15rem;
+    line-height: 1.7;
+}
+@media (max-width: 700px) {
+    .main-content {
+        padding: 24px 2vw;
+    }
+    .privacy-content {
+        padding: 18px 8vw;
+        font-size: 1.01rem;
+    }
+    .main-title {
+        font-size: 1.3rem;
+    }
+    .privacy-content h2 {
+        font-size: 1.08rem;
+    }
+}
+@media (max-width: 480px) {
+    .main-content {
+        padding: 10px 1vw;
+    }
+    .privacy-content {
+        padding: 10px 2vw;
+        font-size: 0.98rem;
+    }
+}
+
+    .privacy-content h2 {
+        text-align: left;
+        color: #d4af37;
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
+
+    .privacy-content h3 {
+        text-align: left;
+        color: #c39ea0;
+        margin-top: 25px;
+        margin-bottom: 15px;
+    }
+
+    .privacy-content p {
+        text-align: justify;
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+
+    .privacy-content ul {
+        text-align: left;
+        margin-left: 20px;
+        margin-bottom: 15px;
+    }
+
+    .privacy-content li {
+        margin-bottom: 8px;
+        line-height: 1.5;
+    }
+
+    .main-title {
+        text-align: center;
+        color: #d4af37;
+        margin-bottom: 40px;
+    }
+
+    /* Estilos para modo claro */
+    body.claro .privacy-content h2 {
+        color: #fff;
+        text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+    }
+
+    body.claro .privacy-content h3 {
+        color: #fff;
+        text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+    }
+
+    body.claro .main-title {
+        color: #fff;
+        text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+    }
+
+    .profile-section {
+        margin-bottom: 80px;
+    }
+    .footer {
+    background: #000;
+    padding: 48px 0 32px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 36px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 24px;
+}
+
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+    color: #d4af37;
+}
+
+    /* Estilos para modo claro en footer */
+    body.claro .footer-links a {
+        color: #fff;
+    }
+    body.claro .footer-links a:hover {
+        color: #d4af37;
+    }
+
+.footer-icons {
+    display: flex;
+    gap: 56px;
+    justify-content: center;
+    font-size: 1.7rem;
+    margin-bottom: 24px;
+}
+@media (max-width: 900px) {
+    .footer-icons {
+        gap: 28px;
+        font-size: 1.3rem;
+    }
+}
+@media (max-width: 600px) {
+    .footer-icons {
+        gap: 14px;
+        font-size: 1.05rem;
+        flex-wrap: wrap;
+    }
+}
+
+.footer-icons a {
+    color: #f2e6d8;
+    transition: text-shadow 0.3s, color 0.3s;
+}
+
+.footer-icons a:hover, .footer-icons a:focus {
+    text-shadow: 0 0 8px #FFD700, 0 0 16px #FFD700;
+    color: #FFD700;
+}
+
+    /* Estilos para modo claro en iconos del footer */
+    body.claro .footer-icons a {
+        color: #f2e6d8;
+    }
+
+.footer-info {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    color: #fff;
+}
+
+.footer-info span {
+    color: #fff !important;
+}
+.footer-info i {
+    color: #FFD700 !important;
+}
+
+body.claro .footer-info span {
+    color: #fff !important;
+}
+
+    /* Estilos para modo claro en info del footer */
+    body.claro .footer-info {
+        color: #333;
+    }
+
+</style>
+<body>
+    <header class="header">
+        <div class="header-center">
+            <div class="logo-container">
+                <img id="logo-header-oscuro" class="logo logo-oscuro" src="logo marca profesional carolain rincon produccionesss para modo oscuro_Mesa de trabajo 1.svg" alt="logo carolain producción">
+            </div>
+            <button id="theme-switch" aria-label="Cambiar modo claro/oscuro" tabindex="0" class="theme-switch-btn">
+                <span class="switch-label"></span>
+            </button>
+            <nav class="navbar">
+                <a href="./animaciones.html">Animaciones</a>
+                <a href="./brandiing.png">Branding</a>
+                <a href="./diseñoweb.html">Diseño Web</a>
+                <a href="./fotografia.html">Fotografía</a>
+                <a href="./publicidad.html">Publicidad</a>
+                <a href="./producciondevideos.html">Producción de Videos</a>
+                <a href="./index.html">Inicio</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <h1 class="main-title">Política de Privacidad</h1>
+        <div class="privacy-content">
+            <h2>1. Información general</h2>
+            <p>En Carolain Rincón Produccion Multimedia (en adelante, "nosotros" o "nuestro"), 
+                respetamos la privacidad de los visitantes y clientes de nuestro sitio web. Esta 
+                Política de Privacidad describe cómo recopilamos, usamos, almacenamos y protegemos 
+                tu información personal al utilizar nuestros servicios de producción multimedia, 
+                diseño web, animación, branding, marketing y audiovisuales.</p>
+
+            <h2>2. Información que recopilamos</h2>
+            <h3>a. Información proporcionada por el usuario:</h3>
+            <p>Cuando te comunicas con nosotros, ya sea a través de formularios, correos 
+                electrónicos o cotizaciones, podríamos recopilar:</p>
+            <ul>
+                <li>Nombre completo</li>
+                <li>Correo electrónico</li>
+                <li>Teléfono</li>
+                <li>Empresa o proyecto</li>
+                <li>Información del encargo o requerimiento</li>
+                <li>Archivos enviados (referencias, briefs, logos, etc.)</li>
+            </ul>
+
+            <h3>b. Información de navegación:</h3>
+            <p>Recopilamos automáticamente cierta información cuando navegas por el sitio, incluyendo:</p>
+            <ul>
+                <li>Dirección IP</li>
+                <li>Tipo de navegador</li>
+                <li>Páginas visitadas</li>
+                <li>Tiempo de visita</li>
+                <li>Datos de comportamiento mediante cookies y herramientas de análisis (Google Analytics, etc.)</li>
+            </ul>
+
+            <h2>3. Finalidad del tratamiento de datos</h2>
+            <p>Usamos la información recopilada para:</p>
+            <ul>
+                <li>Responder consultas y solicitudes de cotización</li>
+                <li>Preparar propuestas creativas y presupuestos</li>
+                <li>Mejorar la navegación y experiencia en el sitio web</li>
+                <li>Enviar comunicaciones promocionales o boletines (solo con tu consentimiento)</li>
+                <li>Cumplir obligaciones contractuales o legales</li>
+            </ul>
+
+            <h2>4. Uso de cookies</h2>
+            <p>Este sitio utiliza cookies para:</p>
+            <ul>
+                <li>Analizar el tráfico y comportamiento del usuario</li>
+                <li>Mejorar la funcionalidad del sitio</li>
+                <li>Recordar preferencias del usuario</li>
+            </ul>
+            <p>Puedes configurar tu navegador para bloquear o eliminar cookies, pero esto puede afectar el funcionamiento del sitio.</p>
+
+            <h2>5. Conservación de datos</h2>
+            <p>Conservamos tus datos solo el tiempo necesario para cumplir con los fines mencionados o para cumplir con requerimientos legales. Si solo nos contactaste sin formalizar servicios, tus datos pueden ser eliminados a los 12 meses.</p>
+
+            <h2>6. Compartir información</h2>
+            <p>No vendemos ni alquilamos tu información personal. Podemos compartirla únicamente con:</p>
+            <ul>
+                <li>Proveedores de servicios técnicos (hosting, email, CRM)</li>
+                <li>Plataformas de análisis web</li>
+                <li>En caso de requerimientos legales por autoridades competentes</li>
+            </ul>
+            <p>Todos nuestros proveedores están sujetos a acuerdos de confidencialidad.</p>
+
+            <h2>7. Seguridad de la información</h2>
+            <p>Implementamos medidas técnicas y organizativas para proteger tus datos contra accesos no autorizados, pérdida o destrucción. Sin embargo, ningún sistema es 100% seguro, por lo que recomendamos precaución al compartir información sensible.</p>
+
+            <h2>8. Tus derechos</h2>
+            <p>Tienes derecho a:</p>
+            <ul>
+                <li>Acceder a tus datos personales</li>
+                <li>Rectificarlos si están incorrectos</li>
+                <li>Solicitar su eliminación</li>
+                <li>Oponerte al tratamiento con fines de marketing</li>
+                <li>Retirar tu consentimiento en cualquier momento</li>
+            </ul>
+            <p>Puedes ejercer estos derechos escribiéndonos a: crproduccionmultimedia@gmail.com</p>
+
+            <h2>9. Enlaces a terceros</h2>
+            <p>Nuestro sitio puede contener enlaces a otros sitios web (por ejemplo, 
+                Behance, Vimeo, Instagram). No somos responsables de las políticas de privacidad
+                 de dichos sitios. Te recomendamos revisarlas antes de proporcionar tus datos.</p>
+
+            <h2>10. Menores de edad</h2>
+            <p>Nuestros servicios no están dirigidos a menores de 18 años. No recopilamos 
+                voluntariamente información de menores sin consentimiento de padres o tutores.</p>
+
+            <h2>11. Cambios a esta política</h2>
+            <p>Nos reservamos el derecho de modificar esta Política de Privacidad en cualquier 
+                momento. Te recomendamos revisarla periódicamente. La última actualización fue 
+                realizada el 14 de julio de 2025.</p>
+
+            <h2>12. Contacto</h2>
+            <p>Si tienes dudas sobre esta política o sobre el uso de tu información, puedes contactarnos a:</p>
+            <p><strong>Nombre del Responsable:</strong> Carolain Rincón<br>
+            <strong>Email:</strong> crproduccionmultimedia@gmail.com<br>
+            <strong>WhatsApp / Teléfono:</strong> +57 3052329341<br>
+            <strong>Ciudad / País:</strong> Medellín, Colombia</p>
+        </div>
+    </main>
+
+    <div class="terminosycondiciones"></div>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="./terminosycondiciones.html" title="Terminos y condiciones"><span>Terminos y Condiciones</span> </a>
+            </div>
+            <div class="footer-icons">
+                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" title="Github"><i class="fab fa-github"></i></a>
+                <a href="#" title="Tiktok"><i class="fab fa-tiktok"></i></a>
+                <a href="#" title="Youtube"><i class="fab fa-youtube"></i></a>
+                <a href="#" title="Spotify"><i class="fab fa-spotify"></i></a>
+                <a href="#" title="Gmail"><i class="fas fa-envelope"></i></a>
+            </div>
+            <div class="footer-info">
+                <span><i class="fas fa-map-marker-alt"></i>Medellín, Colombia</span>
+            </div>
+        </div>
+    </footer>
+    <script>
+    // Switch de tema claro/oscuro SOLO cambia la clase, no manipula src ni iconos
+    (function() {
+        const switchBtn = document.getElementById('theme-switch');
+        let isDark = true;
+        function setTheme(dark) {
+            isDark = dark;
+            if (dark) {
+                document.body.classList.remove('claro');
+            } else {
+                document.body.classList.add('claro');
+            }
+        }
+        switchBtn.addEventListener('click', function() {
+            setTheme(!isDark);
+        });
+        switchBtn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                setTheme(!isDark);
+            }
+        });
+        setTheme(true);
+    })();
+    </script>
+</body>

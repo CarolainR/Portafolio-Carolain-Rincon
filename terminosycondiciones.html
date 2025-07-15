@@ -340,7 +340,123 @@
                 gap: 18px;
             }
         }
-      
+
+        .terms-content {
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .terms-content h2 {
+            text-align: left;
+            color: #d4af37;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .terms-content h3 {
+            text-align: left;
+            color: #c39ea0;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .terms-content p {
+            text-align: justify;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .terms-content ul {
+            text-align: left;
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .terms-content li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .update-date {
+            text-align: center;
+            font-weight: bold;
+            color: #d4af37;
+            margin-bottom: 30px;
+        }
+
+        /* Estilos para modo claro */
+        body.claro .terms-content h2 {
+            color: #fff;
+            text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+        }
+
+        body.claro .terms-content h3 {
+            color: #fff;
+            text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+        }
+
+        body.claro .main-title {
+            color: #fff;
+            text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+        }
+        .legal-container {
+            max-width: 900px;
+            margin: 48px auto 32px auto;
+            background: #f2e6d8;
+            color: #000;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            padding: 38px 48px;
+            font-size: 1.15rem;
+            line-height: 1.7;
+        }
+        .legal-container h1, .legal-container h2 {
+            color: #b46345;
+            text-align: center;
+            margin-bottom: 24px;
+            font-size: 2rem;
+        }
+        .legal-container h2 {
+            font-size: 1.3rem;
+            margin-top: 32px;
+            margin-bottom: 12px;
+            text-align: left;
+        }
+        .legal-container ul, .legal-container ol {
+            margin-left: 24px;
+            margin-bottom: 18px;
+        }
+        .legal-container li {
+            margin-bottom: 8px;
+        }
+        .legal-container strong {
+            color: #d4af37;
+        }
+        .legal-container .contacto {
+            margin-top: 32px;
+            font-size: 1.08rem;
+            color: #000;
+            text-align: left;
+        }
+        @media (max-width: 700px) {
+            .legal-container {
+                padding: 18px 8vw;
+                font-size: 1.01rem;
+            }
+            .legal-container h1 {
+                font-size: 1.3rem;
+            }
+            .legal-container h2 {
+                font-size: 1.08rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .legal-container {
+                padding: 10px 2vw;
+                font-size: 0.98rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -354,27 +470,81 @@
             </button>
             <nav class="navbar">
                 <a href="index.html">Inicio</a>
-                <a href="animaciones.html">Animaciones</a>
-                <a href="branding.html">Branding</a>
-                <a href="diseñoweb.html">Diseño Web</a>
-                <a href="fotografia.html">Fotografía</a>
-                <a href="publicidad.html">Publicidad</a>
-                <a href="contacto.html">Contacto</a>
+                <a href="./animaciones.html">Animaciones</a>
+                <a href="./branding.html">Branding</a>
+                <a href="./diseñoweb.html">Diseño Web</a>
+                <a href="./fotografia.html">Fotografía</a>
+                <a href="./publicidad.html">Publicidad</a>
+                <a href="./contacto.html">Contacto</a>
             </nav>
         </div>
     </header>
     <main class="main-content">
-        <section class="banner-terminosycondiciones">
-            <img class="banner-img" src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1600&q=80" alt="Producción de Videos banner">
-            
-        </section>
-        
+        <div class="legal-container">
+            <h1>Términos y Condiciones</h1>
+            <p><strong>Última actualización:</strong> 14 de julio de 2025</p>
+            <p>Bienvenido a Carolain Rincón Producción Multimedia. Al acceder y utilizar este sitio web, aceptas cumplir con los siguientes términos y condiciones. Te recomendamos leer esta información detenidamente antes de utilizar nuestros servicios.</p>
+            <h2>1. Aceptación de los Términos</h2>
+            <p>El uso de este sitio web y/o la contratación de cualquiera de nuestros servicios implica la aceptación plena de estos Términos y Condiciones. Si no estás de acuerdo con alguno de ellos, te pedimos que no utilices este sitio.</p>
+            <h2>2. Servicios Ofrecidos</h2>
+            <p>Ofrecemos una amplia gama de servicios en el ámbito de la producción multimedia, incluyendo:</p>
+            <ul>
+                <li>Diseño y desarrollo web (UX/UI, sitios responsivos, HTML, CSS, JavaScript)</li>
+                <li>Fotografía profesional</li>
+                <li>Producción y edición de videos</li>
+                <li>Branding, publicidad y marketing digital</li>
+                <li>Creación de personajes e ilustraciones animadas</li>
+            </ul>
+            <p>Cada servicio se gestiona bajo un acuerdo personalizado que incluye plazos, costos y entregables específicos.</p>
+            <h2>3. Propiedad Intelectual</h2>
+            <p>Todos los contenidos, diseños, gráficos, logotipos, fotografías, videos, personajes y animaciones desarrollados por nosotros son propiedad de Carolain Rincón Producción Multimedia, a menos que se acuerde lo contrario por escrito con el cliente.</p>
+            <ul>
+                <li>El cliente adquiere derechos de uso sobre el material final entregado, pero no sobre los archivos fuente (a menos que se incluya en el acuerdo).</li>
+                <li>No está permitida la reproducción, distribución o modificación del contenido sin autorización previa por escrito.</li>
+            </ul>
+            <h2>4. Uso del Sitio Web</h2>
+            <ul>
+                <li>El contenido de este sitio web está protegido por derechos de autor y solo puede utilizarse para fines informativos o de consulta.</li>
+                <li>No se permite el uso indebido del sitio, incluyendo intentos de vulnerar su seguridad o acceder a información confidencial.</li>
+            </ul>
+            <h2>5. Contratación de Servicios</h2>
+            <ul>
+                <li>Se requiere una propuesta o cotización aprobada por el cliente.</li>
+                <li>La ejecución del proyecto inicia con un pago inicial (porcentaje según el servicio acordado).</li>
+                <li>Los plazos de entrega son aproximados y pueden variar por causas ajenas a nuestro control. Nos comprometemos a comunicar cualquier cambio oportunamente.</li>
+            </ul>
+            <h2>6. Cancelaciones y Reembolsos</h2>
+            <ul>
+                <li>El cliente puede cancelar un proyecto en cualquier momento. Sin embargo, el pago realizado hasta la fecha no será reembolsable si ya se ha iniciado el trabajo.</li>
+                <li>En caso de cancelación por parte nuestra (por causas de fuerza mayor), se reembolsará el valor proporcional al trabajo no realizado.</li>
+            </ul>
+            <h2>7. Responsabilidad</h2>
+            <ul>
+                <li>Nos comprometemos a entregar un producto de calidad, funcional y profesional. Sin embargo, no nos hacemos responsables por:</li>
+                <ul>
+                    <li>Daños derivados del mal uso del contenido entregado.</li>
+                    <li>Pérdidas económicas o de reputación generadas por una mala implementación por parte del cliente.</li>
+                    <li>Problemas técnicos relacionados con el hosting, terceros proveedores o plataformas externas.</li>
+                </ul>
+            </ul>
+            <h2>8. Modificaciones</h2>
+            <p>Nos reservamos el derecho de actualizar estos Términos y Condiciones en cualquier momento. Las modificaciones entrarán en vigor una vez publicadas en esta página. Se recomienda revisar esta sección periódicamente.</p>
+            <h2>9. Contacto</h2>
+            <div class="contacto">
+                <p>Para cualquier consulta relacionada con estos Términos y Condiciones o nuestros servicios, puedes escribirnos a:</p>
+                <ul>
+                    <li>📧 Email: crproduccionmultimedia@gmail.com</li>
+                    <li>📱 WhatsApp: +57 3052329341</li>
+                    <li>🌐 Sitio web: Carolain Rincón Producción Multimedia</li>
+                </ul>
+            </div>
+        </div>
     </main>
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-links">
 
-                <a href="#" title="Politicas de privacidad">Politicas de privacidad</a>
+                <a href="./politicasdeprivacidad.html" title="Politicas de privacidad">Politicas de privacidad</a>
             </div>
             <div class="footer-icons">
                 <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
@@ -390,5 +560,29 @@
             </div>
         </div>
     </footer>
+    <script>
+    // Switch de tema claro/oscuro SOLO cambia la clase, no manipula src ni iconos
+    (function() {
+        const switchBtn = document.getElementById('theme-switch');
+        let isDark = true;
+        function setTheme(dark) {
+            isDark = dark;
+            if (dark) {
+                document.body.classList.remove('claro');
+            } else {
+                document.body.classList.add('claro');
+            }
+        }
+        switchBtn.addEventListener('click', function() {
+            setTheme(!isDark);
+        });
+        switchBtn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                setTheme(!isDark);
+            }
+        });
+        setTheme(true);
+    })();
+    </script>
 </body>
 </html> 

@@ -848,37 +848,38 @@
         }
         .galeria-secundaria {
             display: flex;
-            gap: 18px;
+            flex-direction: column;
+            gap: 32px;
+            align-items: center;
             justify-content: center;
             width: 100%;
         }
         .video-secundario {
-            width: 180px;
+            width: 100%;
+            max-width: 980px;
             aspect-ratio: 16/9;
-            border-radius: 14px;
-            box-shadow: 0 2px 12px #d4af3722;
-            border: 2px solid transparent;
-            object-fit: cover;
+            min-height: 380px;
+            border-radius: 28px;
+            box-shadow: 0 0 48px #d4af37, 0 0 96px #d4af3722;
+            border: 3px solid var(--marca-oro);
             background: #000;
             cursor: pointer;
-            transition: box-shadow 0.3s, border 0.3s, transform 0.2s;
+            transition: box-shadow 0.3s, border 0.3s;
         }
         .video-secundario:hover, .video-secundario:focus {
-            box-shadow: 0 0 16px #d4af37, 0 0 32px #d4af37;
-            border: 2px solid var(--marca-oro);
-            transform: scale(1.06);
+            box-shadow: 0 0 48px #d4af37, 0 0 96px #d4af37;
+            border: 3px solid var(--marca-rosa);
         }
         @media (max-width: 1100px) {
-            .video-destacado { max-width: 98vw; min-height: 0; }
+            .video-destacado, .video-secundario { max-width: 98vw; min-height: 0; }
         }
         @media (max-width: 700px) {
-            .video-destacado { max-width: 98vw; min-height: 0; }
+            .video-destacado, .video-secundario { max-width: 98vw; min-height: 0; }
             .galeria-secundaria { gap: 8px; }
-            .video-secundario { width: 28vw; min-width: 90px; }
         }
         @media (max-width: 500px) {
             .video-destacado-galeria { gap: 12px; }
-            .video-secundario { width: 32vw; min-width: 70px; }
+            .video-destacado, .video-secundario { width: 98vw; min-width: 70px; }
         }
         /* Colores de texto en cards según modo */
         .card, .video-destacado-container, .galeria-secundaria, .video-card-text, .etapa-card, .servicio-card {
@@ -906,6 +907,12 @@
         body.claro .service-list li {
             color: var(--marca-negro);
         }
+        .etapa-card {
+            background: #f2e6d8 !important;
+        }
+        .etapa-card .etapa-desc {
+            color: #000 !important;
+        }
     </style>
 </head>
 <body>
@@ -929,7 +936,7 @@
     </header>
     <main class="main-content">
         <section class="banner-video">
-            <img class="banner-img" src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1600&q=80" alt="Producción de Videos banner">
+            <img class="banner-img" src="./produccion de videos banner.png" alt="Producción de Videos banner">
             <div class="banner-text">
                 <h1 class="main-title">Producción de Videos</h1>
                 <div class="main-subtitle">No solo se graban imágenes: <br>Se capturan emociones, se traducen ideas en 
@@ -963,12 +970,12 @@
         </div>
         <div class="video-destacado-galeria">
             <div class="video-destacado-container">
-                <video id="video-destacado" class="video-destacado" src="https://www.w3schools.com/html/mov_bbb.mp4" controls poster="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80"></video>
+                <iframe id="video-destacado" class="video-destacado" url="https://www.youtube.com/embed/02IvhwWueqw" src="https://www.youtube.com/embed/02IvhwWueqw" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
             </div>
             <div class="galeria-secundaria">
-                <video class="video-secundario" src="https://www.w3schools.com/html/movie.mp4" muted loop playsinline poster="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80"></video>
-                <video class="video-secundario" src="https://www.w3schools.com/html/mov_bbb.mp4" muted loop playsinline poster="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80"></video>
-                <video class="video-secundario" src="https://www.w3schools.com/html/movie.mp4" muted loop playsinline poster="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"></video>
+                <iframe class="video-secundario" url="https://www.youtube.com/embed/8virzH1lD8g" src="https://www.youtube.com/embed/8virzH1lD8g" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+                <iframe class="video-secundario" url="https://www.youtube.com/embed/Z-uEgxVol3E" src="https://www.youtube.com/embed/Z-uEgxVol3E" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+                <iframe class="video-secundario" url="https://www.youtube.com/embed/oZxNzQxr2pw" src="https://www.youtube.com/embed/oZxNzQxr2pw" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
             </div>
         </div>
         <div id="video-lightbox" class="video-lightbox">
@@ -1038,45 +1045,20 @@
     });
     </script>
     <script>
-    // Lógica para video destacado + galería secundaria
+    // Lógica para video destacado + galería secundaria (solo cambia url)
     (function() {
         const videoDestacado = document.getElementById('video-destacado');
         const secundarios = Array.from(document.querySelectorAll('.video-secundario'));
-        // Al hacer hover en los secundarios, preview animado
-        secundarios.forEach(video => {
-            video.addEventListener('mouseenter', () => {
-                video.play();
-            });
-            video.addEventListener('mouseleave', () => {
-                video.pause();
-                video.currentTime = 0;
-            });
-        });
-        // Al hacer clic en un secundario, pasa a ser el principal
         secundarios.forEach(video => {
             video.addEventListener('click', () => {
-                // Guardar src y poster actuales del principal
-                const srcPrincipal = videoDestacado.src;
-                const posterPrincipal = videoDestacado.poster;
-                // Cambiar src y poster
-                videoDestacado.src = video.src;
-                videoDestacado.poster = video.poster;
-                // Cambiar el secundario clicado por el anterior principal
-                video.src = srcPrincipal;
-                video.poster = posterPrincipal;
-                video.pause();
-                video.currentTime = 0;
+                // Intercambia el atributo url y src entre el principal y el secundario
+                const urlPrincipal = videoDestacado.getAttribute('url');
+                const urlSecundario = video.getAttribute('url');
+                videoDestacado.setAttribute('url', urlSecundario);
+                videoDestacado.setAttribute('src', urlSecundario);
+                video.setAttribute('url', urlPrincipal);
+                video.setAttribute('src', urlPrincipal);
             });
-        });
-        // Lightbox al hacer clic en el video principal
-        videoDestacado.addEventListener('click', () => {
-            const lightbox = document.getElementById('video-lightbox');
-            const lightboxVideo = document.getElementById('lightbox-video');
-            lightbox.classList.add('active');
-            lightboxVideo.src = videoDestacado.src;
-            lightboxVideo.currentTime = 0;
-            lightboxVideo.muted = false;
-            lightboxVideo.play();
         });
     })();
     </script>

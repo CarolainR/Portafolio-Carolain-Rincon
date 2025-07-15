@@ -12,7 +12,412 @@
             --marca-beige: #f2e6d8;
             --marca-oro: #d4af37;
             --marca-negro: #000000;
+        }    body {
+    background: #000;
+    color: #fff;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+    /* Modo claro */
+    body.claro {
+        background: #c39ea0;
+        color: #000;
+    }
+
+    .header {
+    width: 100%;
+    padding: 20px 40px;
+    box-sizing: border-box;
+    text-align: center;
+    background: #000;
+}
+
+/* Eliminar cualquier override de modo claro para el header */
+body.claro .header {
+    background: #000;
+}
+
+    .logo-container {
+        margin-bottom: 30px;
+    }
+
+    .logo {
+        max-width: 190px;
+        height: auto;
+        margin: 0 auto 10px auto;
+        display: block;
+        opacity: 0;
+        transform: scale(0.85);
+        animation: logoFadeIn 1.1s cubic-bezier(.77,0,.18,1) 0.2s forwards;
+        transition: transform 0.3s cubic-bezier(.77,0,.18,1);
+        pointer-events: auto !important;
+        cursor: pointer;
+    }
+    .logo:hover {
+        transform: scale(1.35);
+        filter: drop-shadow(0 0 18px #d4af37) drop-shadow(0 0 32px #d4af37);
+        transition: filter 0.3s;
+    }
+    @keyframes logoFadeIn {
+        from { opacity: 0; transform: scale(0.85); }
+        to { opacity: 1; transform: scale(1); }
+    }
+    @media (max-width: 768px) {
+        .logo { max-width: 130px; }
+    }
+
+    /* Logo dual para modo claro/oscuro */
+    .logo.logo-oscuro {
+        display: block;
+    }
+    .logo.logo-claro {
+        display: none;
+    }
+    body.claro .logo.logo-claro {
+        display: block;
+    }
+
+    /* Estilos para el switch de tema */
+    .theme-switch-btn {
+        background: #FFD700;
+        color: #000;
+        border: none;
+        border-radius: 50px;
+        padding: 10px 28px;
+        font-size: 1.1rem;
+        font-family: inherit;
+        font-weight: bold;
+        margin: 12px 0;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s;
+        position: relative;
+    }
+    .theme-switch-btn:focus {
+        outline: 2px solid #c39ea0;
+    }
+    .theme-switch-btn:hover {
+        background: #c39ea0;
+        color: #000;
+    }
+    body.claro .theme-switch-btn {
+        background: #000;
+        color: #FFD700;
+    }
+    body.claro .theme-switch-btn:hover {
+        background: #c39ea0;
+        color: #000;
+    }
+    /* Icono de tema solo con CSS */
+    .theme-switch-btn .switch-label {
+        display: none;
+    }
+    .theme-switch-btn::after {
+        content: '\f185'; /* fa-sun */
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        font-size: 1.2em;
+        margin-left: 8px;
+        vertical-align: middle;
+        transition: content 0.3s;
+    }
+    body.claro .theme-switch-btn::after {
+        content: '\f186'; /* fa-moon */
+    }
+
+.navbar {
+    display: flex;
+    justify-content: center;
+        gap: 40px;
+        margin-top: 20px;
+}
+@media (max-width: 900px) {
+    .navbar {
+        gap: 18px;
+    }
+    nav a {
+        font-size: 0.98rem;
+        padding: 8px 12px;
+    }
+}
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        margin-top: 12px;
+    }
+    nav a {
+        font-size: 0.95rem;
+        padding: 10px 0;
+        width: 100%;
+        text-align: center;
+        border-radius: 8px;
+    }
+}
+
+nav a {
+    color: #fff !important;
+    text-decoration: none;
+    font-size: 1.1rem;
+    position: relative;
+    transition: color 0.2s;
+        padding: 10px 20px;
+        border-radius: 5px;
+}
+
+/* Eliminar override de modo claro */
+body.claro nav a {
+    color: #f2e6d8 !important;
+}
+
+nav a:hover, nav a:focus {
+    text-shadow: 0 0 8px #FFD700, 0 0 16px #FFD700, 0 0 24px #FFD700;
+    color: #FFD700;
+    transition: text-shadow 0.3s, color 0.3s;
+        background: rgba(255, 215, 0, 0.1);
+    }
+
+    /* Estilos para modo claro en navegación */
+    body.claro nav a {
+        color: #000;
+    }
+    body.claro nav a:hover, body.claro nav a:focus {
+        text-shadow: 0 0 8px #FFD700, 0 0 16px #FFD700, 0 0 24px #FFD700;
+        color: #FFD700;
+        background: rgba(255, 215, 0, 0.1);
+    }
+    .footer {
+    background: #000;
+    padding: 48px 0 32px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 36px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 24px;
+}
+
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+    color: #d4af37;
+}
+
+    /* Estilos para modo claro en footer */
+    body.claro .footer-links a {
+        color: #fff;
+    }
+    body.claro .footer-links a:hover {
+        color: #d4af37;
+    }
+
+.footer-icons {
+    display: flex;
+    gap: 56px;
+    justify-content: center;
+    font-size: 1.7rem;
+    margin-bottom: 24px;
+}
+@media (max-width: 900px) {
+    .footer-icons {
+        gap: 28px;
+        font-size: 1.3rem;
+    }
+}
+@media (max-width: 600px) {
+    .footer-icons {
+        gap: 14px;
+        font-size: 1.05rem;
+        flex-wrap: wrap;
+    }
+}
+
+.footer-icons a {
+    color: #f2e6d8;
+    transition: text-shadow 0.3s, color 0.3s;
+}
+
+.footer-icons a:hover, .footer-icons a:focus {
+    text-shadow: 0 0 8px #FFD700, 0 0 16px #FFD700;
+    color: #FFD700;
+}
+
+    /* Estilos para modo claro en iconos del footer */
+    body.claro .footer-icons a {
+        color: #f2e6d8;
+    }
+
+.footer-info {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    color: #fff;
+}
+
+.footer-info span {
+    color: #fff !important;
+}
+.footer-info i {
+    color: #FFD700 !important;
+}
+
+body.claro .footer-info span {
+    color: #fff !important;
+}
+
+    /* Estilos para modo claro en info del footer */
+    body.claro .footer-info {
+        color: #333;
+    }
+    .main-title {
+        text-align: center;
+        margin: 40px 0 30px 0;
+        font-weight: bold;
+        letter-spacing: 2px;
+        font-size: 2.5rem;
+        color: #d4af37;
+        text-shadow: 1px 1px 0 #000;
+        transition: color 0.2s, text-shadow 0.2s;
+    }
+    body.claro .main-title {
+        color: #fff;
+        text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+    }
+    .card-row {
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        gap: 32px;
+        width: 80vw;
+        max-width: 1200px;
+        margin: 40px auto 0 auto;
+    }
+    .service-card {
+        background: #f2e6d8;
+        border-radius: 18px;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+        padding: 32px 24px;
+        flex: 1 1 0;
+        min-width: 220px;
+        max-width: 350px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        color: #fff;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .service-card h2 {
+        color: #d4af37;
+        font-size: 1.3rem;
+        margin-bottom: 16px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        text-shadow: 1px 1px 0 #000;
+        transition: color 0.2s, text-shadow 0.2s;
+    }
+    body.claro .service-card h2 {
+        color: #fff;
+        text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+    }
+    .service-card p {
+        font-size: 1.1rem;
+        color: #000;
+    }
+    .service-card:hover {
+        transform: translateY(-8px) scale(1.03);
+        box-shadow: 0 8px 32px rgba(212,175,55,0.18);
+    }
+    @media (max-width: 900px) {
+        .card-row {
+            flex-direction: column;
+            align-items: center;
+            width: 98vw;
         }
+        .service-card {
+            max-width: 90vw;
+        }
+    }
+    .img-col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
+        margin: 48px auto 0 auto;
+        width: 100%;
+    }
+    .img-row {
+        width: 80vw;
+        max-width: 900px;
+        border-radius: 18px;
+        object-fit: cover;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+        display: block;
+    }
+    .books-section {
+        margin: 48px auto 0 auto;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+    }
+    .book-title {
+        color: #d4af37;
+        font-size: 35px;
+        margin: 18px 0 8px 0;
+        text-align: center;
+        font-weight: bold;
+        letter-spacing: 1px;
+        transition: color 0.2s, text-shadow 0.2s;
+    }
+    body.claro .book-title {
+        color: #fff;
+        text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+    }
+    .book-pdf {
+        border-radius: 12px;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+        background: #fff;
+        margin-bottom: 18px;
+        display: block;
+    }
+    .service-card i {
+        transition: transform 0.4s cubic-bezier(.77,0,.18,1), filter 0.3s;
+        opacity: 0;
+        transform: scale(0.7) translateY(20px);
+        animation: iconFadeIn 0.9s cubic-bezier(.77,0,.18,1) 0.2s forwards, iconPulse 2.2s ease-in-out 1.1s infinite;
+    }
+    @keyframes iconPulse {
+        0%, 100% { filter: none; transform: scale(1) translateY(0); }
+        50% { filter: drop-shadow(0 0 8px #d4af37); transform: scale(1.10) translateY(-2px); }
+    }
+    @keyframes iconFadeIn {
+        from { opacity: 0; transform: scale(0.7) translateY(20px); }
+        to { opacity: 1; transform: scale(1) translateY(0); }
+    }
     </style>
 </head>
 <body>
@@ -20,7 +425,6 @@
         <div class="header-center">
            <div class="logo-container">
                 <img id="logo-header-oscuro" class="logo logo-oscuro" src="logo marca profesional carolain rincon produccionesss para modo oscuro_Mesa de trabajo 1.svg" alt="logo carolain producción modo oscuro">
-                <img id="logo-header-claro" class="logo logo-claro" src="logo modo claro 2_Mesa de trabajo 1.svg" alt="logo carolain producción modo claro">
             </div>
             <button id="theme-switch" aria-label="Cambiar modo claro/oscuro" tabindex="0" class="theme-switch-btn">
                 <span class="switch-label"></span>
@@ -39,56 +443,41 @@
         </div>
     </header>
     <main class="main-content">
-        <h1 class="main-title">Animaciones 2D y 3D</h1>
-        <div class="carousel-animaciones-container">
-            <div class="carousel-animaciones">
-                <button class="carousel-btn prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
-                <div class="carousel-track">
-                    <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" alt="Animación 1" class="carousel-img">
-                    <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" alt="Animación 2" class="carousel-img">
-                    <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" alt="Animación 3" class="carousel-img">
-                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Animación 4" class="carousel-img">
-                    <video class="carousel-img" controls poster="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80">
-                        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                        Tu navegador no soporta video HTML5.
-                    </video>
-                    <video class="carousel-img" controls poster="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80">
-                        <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
-                        Tu navegador no soporta video HTML5.
-                    </video>
-                </div>
-                <button class="carousel-btn next" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
+        <h1 class="main-title">Ilustración y Animaciones</h1>
+        <div class="card-row">
+            <div class="service-card">
+                <i class="fas fa-paint-brush" style="font-size:2.2rem; color:#d4af37; margin-bottom:12px;"></i>
+                <h2>Concepto y Diseño</h2>
+                <p>Desarrollo de personajes y escenarios.</p>
             </div>
-            <div class="carousel-indicators"></div>
+            <div class="service-card">
+                <i class="fas fa-film" style="font-size:2.2rem; color:#d4af37; margin-bottom:12px;"></i>
+                <h2>Animación 2D</h2>
+                <p>Motion graphics, animación tradicional y riggin con Duik.</p>
+                </div>
+            <div class="service-card">
+                <i class="fas fa-cube" style="font-size:2.2rem; color:#d4af37; margin-bottom:12px;"></i>
+                <h2>Animación 3D</h2>
+                <p>Modelado, rigging, texturizado y animación básica.</p>
+            </div>
+        </div>
+        <div class="img-col">
+            <img src="./Scarlett Cat primer plano.png" class="img-row" alt="Ejemplo 1">
+            <img src="./0001.png" class="img-row" alt="Ejemplo 2">
+            <img src="./vertiendo.png" class="img-row" alt="Ejemplo 3">
         </div>
         <div class="books-section">
-            <h2 class="book-title">Book Personaje 1</h2>
-            <iframe class="book-pdf" src="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" width="100%" height="400px" frameborder="0"></iframe>
-            <h2 class="book-title">Book Personaje 2</h2>
-            <iframe class="book-pdf" src="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" width="100%" height="400px" frameborder="0"></iframe>
+            <h2 class="book-title">Book 1</h2>
+            <iframe class="book-pdf" src="./MIXOLOGA CAROLINE CAMPBELL book final.pdf" width="80%" height="400px" frameborder="0"></iframe>
+            <h2 class="book-title">Book 2</h2>
+            <iframe class="book-pdf" src="./Book de Scarlett Cat FINAL.pdf" width="80%" height="400px" frameborder="0"></iframe>
         </div>
-        <div class="youtube-section">
-            <h2 class="book-title">Video Teaser (Ejemplo)</h2>
-            <div class="youtube-video-container">
-                <iframe width="100%" height="400" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video" frameborder="0" allowfullscreen></iframe>
-            </div>
-        </div>
-        <div class="service-desc">
-            Creamos personajes únicos y animaciones de alta calidad en 2D y 3D, diseñados a medida para cada proyecto. 
-            Desde el concepto hasta la animación final, damos vida a tus ideas con un estilo visual innovador, ideal 
-            para publicidad y brandign, tambien para cortometrajes u otros proyectos.
-        </div>
-        <ul class="service-list">
-            <li><span>Concepto y Diseño:</span> Desarrollo de personajes y escenarios.</li>
-            <li><span>Animación 2D:</span> Motion graphics, animación tradicional y riggin con Duik.</li>
-            <li><span>Animación 3D:</span> Modelado, rigging, texturizado y animación básica..</li>
-        </ul>
     </main>
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-links">
-                <a href="#" title="Terminos y condiciones"><span>Terminos y Condiciones</span> </a>
-                <a href="#" title="Politicas de privacidad">Politicas de privacidad</a>
+                <a href="./terminosycondiciones.html" title="Terminos y condiciones"><span>Terminos y Condiciones</span> </a>
+                <a href="./politicasdeprivacidad.html" title="Politicas de privacidad">Politicas de privacidad</a>
             </div>
             <div class="footer-icons">
                 <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>

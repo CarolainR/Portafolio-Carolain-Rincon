@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diseño Publicitario Multicanal - Carolain</title>
+    <title>Diseño Publicitario</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -13,6 +13,495 @@
             --marca-oro: #d4af37;
             --marca-negro: #000000;
         }
+    body {
+    background: #000;
+    color: #fff;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+    /* Modo claro */
+    body.claro {
+        background: #c39ea0;
+        color: #000;
+    }
+
+    .header {
+    width: 100%;
+    padding: 20px 40px;
+    box-sizing: border-box;
+    text-align: center;
+    background: #000;
+}
+
+/* Eliminar cualquier override de modo claro para el header */
+body.claro .header {
+    background: #000;
+}
+
+    .logo-container {
+        margin-bottom: 30px;
+    }
+
+    .logo {
+        max-width: 190px;
+        height: auto;
+        margin: 0 auto 10px auto;
+        display: block;
+        opacity: 0;
+        transform: scale(0.85);
+        animation: logoFadeIn 1.1s cubic-bezier(.77,0,.18,1) 0.2s forwards;
+        transition: transform 0.3s cubic-bezier(.77,0,.18,1);
+        pointer-events: auto !important;
+        cursor: pointer;
+    }
+    .logo:hover {
+        transform: scale(1.35);
+        filter: drop-shadow(0 0 18px #d4af37) drop-shadow(0 0 32px #d4af37);
+        transition: filter 0.3s;
+    }
+    @keyframes logoFadeIn {
+        from { opacity: 0; transform: scale(0.85); }
+        to { opacity: 1; transform: scale(1); }
+    }
+    @media (max-width: 768px) {
+        .logo { max-width: 130px; }
+    }
+
+    /* Logo dual para modo claro/oscuro */
+    .logo.logo-oscuro {
+        display: block;
+    }
+    .logo.logo-claro {
+        display: none;
+    }
+    body.claro .logo.logo-claro {
+        display: block;
+    }
+
+    /* Estilos para el switch de tema */
+    .theme-switch-btn {
+        background: #FFD700;
+        color: #000;
+        border: none;
+        border-radius: 50px;
+        padding: 10px 28px;
+        font-size: 1.1rem;
+        font-family: inherit;
+        font-weight: bold;
+        margin: 12px 0;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s;
+        position: relative;
+    }
+    .theme-switch-btn:focus {
+        outline: 2px solid #c39ea0;
+    }
+    .theme-switch-btn:hover {
+        background: #c39ea0;
+        color: #000;
+    }
+    body.claro .theme-switch-btn {
+        background: #000;
+        color: #FFD700;
+    }
+    body.claro .theme-switch-btn:hover {
+        background: #c39ea0;
+        color: #000;
+    }
+    /* Icono de tema solo con CSS */
+    .theme-switch-btn .switch-label {
+        display: none;
+    }
+    .theme-switch-btn::after {
+        content: '\f185'; /* fa-sun */
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        font-size: 1.2em;
+        margin-left: 8px;
+        vertical-align: middle;
+        transition: content 0.3s;
+    }
+    body.claro .theme-switch-btn::after {
+        content: '\f186'; /* fa-moon */
+    }
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px;
+}
+@media (max-width: 900px) {
+    .navbar {
+        gap: 18px;
+    }
+    nav a {
+        font-size: 0.98rem;
+        padding: 8px 12px;
+    }
+}
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        margin-top: 12px;
+    }
+    nav a {
+        font-size: 0.95rem;
+        padding: 10px 0;
+        width: 100%;
+        text-align: center;
+        border-radius: 8px;
+    }
+}
+
+nav a {
+    color: #fff !important;
+    text-decoration: none;
+    font-size: 1.1rem;
+    position: relative;
+    transition: color 0.2s;
+        padding: 10px 20px;
+        border-radius: 5px;
+}
+
+/* Eliminar override de modo claro */
+body.claro nav a {
+    color: #f2e6d8 !important;
+}
+
+nav a:hover, nav a:focus {
+    text-shadow: 0 0 8px #FFD700, 0 0 16px #FFD700, 0 0 24px #FFD700;
+    color: #FFD700;
+    transition: text-shadow 0.3s, color 0.3s;
+        background: rgba(255, 215, 0, 0.1);
+    }
+
+    /* Estilos para modo claro en navegación */
+    body.claro nav a {
+        color: #000;
+    }
+    body.claro nav a:hover, body.claro nav a:focus {
+        text-shadow: 0 0 8px #FFD700, 0 0 16px #FFD700, 0 0 24px #FFD700;
+        color: #FFD700;
+        background: rgba(255, 215, 0, 0.1);
+    }
+        .footer {
+    background: #000;
+    padding: 48px 0 32px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 36px;
+}
+.footer-links {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 24px;
+}
+@media (max-width: 900px) {
+    .footer-content {
+        gap: 18px;
+    }
+    .footer-links {
+        gap: 18px;
+        margin-bottom: 12px;
+    }
+    .footer-icons {
+        gap: 18px;
+        margin-bottom: 12px;
+    }
+    .footer-info {
+        gap: 12px;
+    }
+}
+@media (max-width: 600px) {
+    .footer-content {
+        gap: 12px;
+    }
+    .footer-links {
+        gap: 10px;
+        margin-bottom: 8px;
+    }
+    .footer-icons {
+        gap: 10px;
+        font-size: 1.05rem;
+        flex-wrap: wrap;
+        margin-bottom: 8px;
+    }
+    .footer-info {
+        gap: 6px;
+        font-size: 1.05rem;
+    }
+    .footer-icons a i {
+        font-size: 21px !important;
+        width: 21px !important;
+        height: 21px !important;
+        line-height: 21px !important;
+    }
+}
+
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+    color: #d4af37;
+}
+
+    /* Estilos para modo claro en footer */
+    body.claro .footer-links a {
+        color: #fff;
+    }
+    body.claro .footer-links a:hover {
+        color: #d4af37;
+    }
+
+.footer-icons {
+    display: flex;
+    gap: 56px;
+    justify-content: center;
+    font-size: 1.7rem;
+    margin-bottom: 24px;
+}
+
+.footer-icons a {
+    color: #f2e6d8;
+    transition: text-shadow 0.3s, color 0.3s;
+}
+
+.footer-icons a:hover, .footer-icons a:focus {
+    text-shadow: 0 0 8px #FFD700, 0 0 16px #FFD700;
+    color: #FFD700;
+}
+
+    /* Estilos para modo claro en iconos del footer */
+    body.claro .footer-icons a {
+        color: #f2e6d8;
+    }
+
+.footer-info {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    color: #fff;
+}
+
+.footer-info span {
+    color: #fff !important;
+}
+.footer-info i {
+    color: #FFD700 !important;
+}
+
+body.claro .footer-info span {
+    color: #fff !important;
+}
+
+    /* Estilos para modo claro en info del footer */
+    body.claro .footer-info {
+        color: #333;
+    }
+
+    .main-content {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 60px 20px 40px 20px;
+        text-align: center;
+    }
+    .main-title {
+        color: #d4af37;
+        font-size: 2.5rem;
+        font-weight: 900;
+        margin-bottom: 32px;
+        letter-spacing: 1.2px;
+    }
+    .service-img {
+        width: 80vw;
+        max-width: 700px;
+        height: 320px;
+        object-fit: cover;
+        border-radius: 18px;
+        margin: 0 auto 32px auto;
+        display: block;
+        box-shadow: 0 4px 24px #c39ea044;
+    }
+    .service-desc {
+        color: #fff;
+        font-size: 1.18rem;
+        margin: 0 auto 28px auto;
+        max-width: 700px;
+        text-align: justify;
+        line-height: 1.7;
+    }
+    .service-list {
+        list-style: disc inside;
+        color: #d4af37;
+        font-size: 1.13rem;
+        margin: 0 auto;
+        max-width: 600px;
+        text-align: left;
+        padding-left: 18px;
+    }
+    .service-list li {
+        margin-bottom: 12px;
+        color: #fff;
+        line-height: 1.6;
+    }
+    .service-list li span {
+        color: #d4af37;
+        font-weight: bold;
+    }
+    /* Modo claro */
+    body.claro .main-title {
+        color: #fff;
+        text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+    }
+    body.claro .service-desc {
+        color: #000;
+    }
+    body.claro .service-list {
+        color: #b46345;
+    }
+    body.claro .service-list li {
+        color: #000;
+    }
+    body.claro .service-list li span {
+        color: #b46345;
+    }
+
+/* --- CSS del carrusel --- */
+.carousel-container {
+    position: relative;
+    width: 80vw;
+    max-width: 900px;
+    margin: 0 auto 32px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50vw;
+    max-height: 400px;
+    min-height: 180px;
+}
+.carousel-track {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px #c39ea044;
+    background: #222;
+}
+.carousel-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    transition: opacity 0.5s;
+    z-index: 1;
+    border-radius: 18px;
+    background: #222;
+    display: block;
+}
+.carousel-img.active {
+    opacity: 1;
+    z-index: 2;
+}
+.carousel-arrow {
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 2rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+.carousel-arrow.left {
+    left: 10px;
+}
+.carousel-arrow.right {
+    right: 10px;
+}
+.carousel-arrow:hover, .carousel-arrow:focus {
+    background: #d4af37;
+    color: #000;
+}
+.carousel-indicators {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 4;
+}
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #fff;
+    opacity: 0.5;
+    cursor: pointer;
+    transition: opacity 0.2s, background 0.2s;
+    border: 2px solid #d4af37;
+}
+.indicator.active {
+    opacity: 1;
+    background: #d4af37;
+}
+@media (max-width: 800px) {
+    .carousel-container {
+        width: 98vw;
+        max-width: 98vw;
+        height: 48vw;
+        max-height: 220px;
+        min-height: 100px;
+    }
+}
+@media (max-width: 500px) {
+    .carousel-container {
+        width: 100vw;
+        max-width: 100vw;
+        height: 54vw;
+        max-height: 140px;
+        min-height: 60px;
+    }
+}
+
+body li::marker {
+    content: none;
+    display: none;
+}
+
     </style>
 </head>
 <body>
@@ -20,7 +509,7 @@
         <div class="header-center">
             <div class="logo-container">
                 <img id="logo-header-oscuro" class="logo logo-oscuro" src="logo marca profesional carolain rincon produccionesss para modo oscuro_Mesa de trabajo 1.svg" alt="logo carolain producción modo oscuro">
-                <img id="logo-header-claro" class="logo logo-claro" src="logo modo claro 2_Mesa de trabajo 1.svg" alt="logo carolain producción modo claro">
+                
             </div>
             <button id="theme-switch" aria-label="Cambiar modo claro/oscuro" tabindex="0" class="theme-switch-btn">
                 <span class="switch-label"></span>
@@ -37,15 +526,457 @@
     </header>
     <main class="main-content">
         <h1 class="main-title">Diseño Publicitario Multicanal</h1>
-        <img class="service-img" src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" alt="Diseño Publicitario Multicanal">
-        <div class="service-desc">
-            Creamos campañas publicitarias impactantes y coherentes a través de múltiples canales. Diseñamos piezas visuales adaptadas a plataformas digitales, impresas y audiovisuales, asegurando que tu mensaje llegue de manera efectiva y memorable.
+        <div class="carousel-container">
+            <button class="carousel-arrow left" aria-label="Anterior">&#10094;</button>
+            <div class="carousel-track">
+                <img src="./perfil 1.jpg" class="carousel-img" alt="Publicidad 1">
+                <img src="./yosoycarolainr barrido-74.jpg" class="carousel-img" alt="Publicidad 2">
+                <img src="./PUBLICIDAD CASA SUR AUSTIN2_Mesa de trabajo 1.png" class="carousel-img" alt="Publicidad 3">
+                <img src="./Dulce eva.jpg" class="carousel-img" alt="Publicidad 4">
+                <img src="./portada final hardcore.png" class="carousel-img" alt="Publicidad 5">
+            </div>
+            <button class="carousel-arrow right" aria-label="Siguiente">&#10095;</button>
+            <div class="carousel-indicators">
+                <span class="indicator active"></span>
+                <span class="indicator"></span>
+                <span class="indicator"></span>
+                <span class="indicator"></span>
+                <span class="indicator"></span>
+            </div>
         </div>
+        <div class="service-desc">
+            Creamos campañas publicitarias impactantes y coherentes a través de múltiples canales. Diseñamos piezas visuales adaptadas a plataformas digitales, impresas y audiovisuales, asegurando que tu mensaje llegue de manera efectiva y memorable.</div>
         <ul class="service-list">
-            <li><span>Diseño Digital:</span> Banners, redes sociales, anuncios web.</li>
-            <li><span>Diseño Impreso:</span> Flyers, afiches, brochures y más.</li>
-            <li><span>Publicidad Audiovisual:</span> Spots, videos y animaciones para campañas.</li>
+            <li class="no-marker">
+                <h2 class="service-subtitle">Diseño Digital</h2>
+                <div class="cards-digital-container">
+                    <div class="card-digital formato-estatico">
+                        <i class="fas fa-image card-icon"></i>
+                        <h3 class="service-subsubtitle">Formatos Estáticos</h3>
+                        <ul class="formatos-lista">
+                            <li>Banners (estándar y adaptativos)</li>
+                            <li>Publicaciones para redes sociales (Instagram, Facebook, LinkedIn, X/Twitter, etc.)</li>
+                            <li>Carruseles de imágenes</li>
+                            <li>Miniaturas (thumbnails) para YouTube y otras plataformas</li>
+                            <li>Imágenes para email marketing (newsletters)</li>
+                            <li>Landing pages y micrositios promocionales</li>
+                            <li>Creativos para marketplaces (Amazon, Mercado Libre)</li>
+                        </ul>
+                    </div>
+                    <div class="cards-digital-row-60">
+                        <div class="card-digital">
+                            <i class="fas fa-bullhorn card-icon"></i>
+                            <h3 class="service-subsubtitle">Publicidad Web</h3>
+                            <ul class="formatos-lista">
+                                <li>Interstitial ads (pantalla completa en apps o sitios)</li>
+                                <li>Anuncios nativos</li>
+                                <li>Push ads visuales</li>
+                                <li>Splash screens promocionales</li>
+                            </ul>
+                        </div>
+                        <div class="card-digital">
+                            <i class="fas fa-play-circle card-icon"></i>
+                            <h3 class="service-subsubtitle">Formatos Dinámicos / Animados</h3>
+                            <ul class="formatos-lista">
+                                <li>GIFs promocionales</li>
+                                <li>Stories animadas (Instagram, Facebook, Snapchat)</li>
+                                <li>Anuncios animados (HTML5 para Google Ads)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </li>
         </ul>
+        <h2 class="service-subtitle">Diseño Impreso</h2>
+        <div class="cards-impreso-2x2-60">
+            <div class="card-impreso">
+                <i class="fas fa-address-card card-icon"></i>
+                <h3 class="service-subsubtitle">Papelería Comercial</h3>
+                <ul class="formatos-lista">
+                    <li>Tarjetas de presentación</li>
+                    <li>Hojas membretadas</li>
+                    <li>Sobres personalizados</li>
+                    <li>Carpetas corporativas</li>
+                </ul>
+            </div>
+            <div class="card-impreso">
+                <i class="fas fa-tags card-icon"></i>
+                <h3 class="service-subsubtitle">Publicidad Directa y Promocional</h3>
+                <ul class="formatos-lista">
+                    <li>Flyers / Volantes</li>
+                    <li>Trípticos, dípticos y folletos</li>
+                    <li>Carteles / Pósters</li>
+                    <li>Cupones, vales y tarjetas promocionales</li>
+                    <li>Stickers / Calcomanías</li>
+                    <li>Etiquetas de productos</li>
+                </ul>
+            </div>
+            <div class="card-impreso">
+                <i class="fas fa-box-open card-icon"></i>
+                <h3 class="service-subsubtitle">Publicidad de Marca y Empaque</h3>
+                <ul class="formatos-lista">
+                    <li>Diseño de empaques (cajas, bolsas, botellas, etc.)</li>
+                    <li>Etiquetas informativas o promocionales</li>
+                    <li>Manuales de identidad visual impresos</li>
+                </ul>
+            </div>
+            <div class="card-impreso">
+                <i class="fas fa-ad card-icon"></i>
+                <h3 class="service-subsubtitle">Publicidad Exterior (OOH)</h3>
+                <ul class="formatos-lista">
+                    <li>Vallas publicitarias (billboards)</li>
+                    <li>Lonas publicitarias</li>
+                    <li>Mupis y marquesinas</li>
+                    <li>Anuncios para mobiliario urbano y transporte público</li>
+                </ul>
+            </div>
+        </div>
+        <h2 class="service-subtitle">Publicidad Audiovisual</h2>
+        <div class="cards-audiovisual-2x2-60">
+            <div class="card-audiovisual">
+                <i class="fas fa-video card-icon"></i>
+                <h3 class="service-subsubtitle">Video Publicitario</h3>
+                <ul class="formatos-lista">
+                    <li>Comerciales para televisión o YouTube</li>
+                    <li>Anuncios para redes sociales (reels, shorts, TikToks)</li>
+                    <li>Pre-roll y mid-roll ads</li>
+                    <li>Videos promocionales de marca</li>
+                </ul>
+            </div>
+            <div class="card-audiovisual">
+                <i class="fas fa-briefcase card-icon"></i>
+                <h3 class="service-subsubtitle">Contenido Corporativo</h3>
+                <ul class="formatos-lista">
+                    <li>Videos institucionales</li>
+                    <li>Videos de servicios o productos</li>
+                    <li>Testimoniales de clientes</li>
+                    <li>Presentaciones audiovisuales</li>
+                </ul>
+            </div>
+            <div class="card-audiovisual">
+                <i class="fas fa-magic card-icon"></i>
+                <h3 class="service-subsubtitle">Contenido Creativo y Animado</h3>
+                <ul class="formatos-lista">
+                    <li>Motion graphics (animación gráfica 2D/3D)</li>
+                    <li>Creación de personajes animados</li>
+                    <li>Infografías animadas</li>
+                    <li>Intros y outros para videos</li>
+                    <li>Animaciones para branding</li>
+                </ul>
+            </div>
+            <div class="card-audiovisual">
+                <i class="fas fa-microphone-alt card-icon"></i>
+                <h3 class="service-subsubtitle">Spots para Medios Tradicionales</h3>
+                <ul class="formatos-lista">
+                    <li>Spots radiales (con diseño de guion visual)</li>
+                    <li>Anuncios para pantallas LED en vía pública o eventos</li>
+                </ul>
+            </div>
+        </div>
+
+        <style>
+        .service-list .no-marker {
+            list-style: none;
+        }
+        .service-subtitle {
+            color: #d4af37;
+            text-align: center;
+            font-size: 1.35rem;
+            font-weight: bold;
+            margin: 18px 0 8px 0;
+            letter-spacing: 1px;
+        }
+        .service-subsubtitle {
+            color: #b46345;
+            text-align: center;
+            font-size: 1.13rem;
+            font-weight: bold;
+            margin: 14px 0 8px 0;
+            letter-spacing: 0.5px;
+        }
+        body.claro .service-subtitle {
+            color: #fff;
+            text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+        }
+        body.claro .service-subsubtitle {
+            color: #fff;
+            text-shadow: 1px 1px 0 #b46345, -1px -1px 0 #b46345;
+        }
+        .cards-audiovisual-container {
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+            align-items: stretch;
+            margin: 32px 0 32px 0;
+            flex-wrap: wrap;
+        }
+        .card-audiovisual {
+            background: #f2e6d8;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px #c39ea044;
+            width: 400px;
+            min-width: 220px;
+            max-width: 98vw;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 18px 12px 12px 12px;
+            transition: box-shadow 0.2s;
+            margin-bottom: 18px;
+            overflow: auto;
+        }
+        .card-audiovisual h3 {
+            color: #b46345;
+            font-size: 1.15rem;
+            margin: 0 0 8px 0;
+            text-align: center;
+        }
+        .card-audiovisual ul {
+            color: #000;
+            font-size: 0.98rem;
+            text-align: left;
+            margin: 0;
+            padding-left: 18px;
+        }
+        .card-audiovisual li {
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+        body.claro .card-audiovisual {
+            background: #fff;
+        }
+        body.claro .card-audiovisual h3 {
+            color: #d4af37;
+            text-shadow: 1px 1px 0 #000, -1px -1px 0 #000;
+        }
+        .cards-digital-container, .cards-impreso-container {
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+            align-items: stretch;
+            margin: 32px 0 32px 0;
+            flex-wrap: wrap;
+        }
+        .card-digital, .card-impreso {
+            background: #f2e6d8;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px #c39ea044;
+            width: 400px;
+            min-width: 220px;
+            max-width: 98vw;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 18px 12px 12px 12px;
+            transition: box-shadow 0.2s;
+            margin-bottom: 18px;
+            overflow: auto;
+        }
+        .card-digital h3, .card-impreso h3 {
+            color: #b46345;
+            font-size: 1.15rem;
+            margin: 0 0 8px 0;
+            text-align: center;
+        }
+        .card-digital ul, .card-impreso ul {
+            color: #000;
+            font-size: 0.98rem;
+            text-align: left;
+            margin: 0;
+            padding-left: 18px;
+        }
+        .card-digital li, .card-impreso li {
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+        body.claro .card-digital, body.claro .card-impreso {
+            background: #fff;
+        }
+        body.claro .card-digital h3, body.claro .card-impreso h3 {
+            color: #d4af37;
+            text-shadow: 1px 1px 0 #000, -1px -1px 0 #000;
+        }
+        .card-digital ul, .card-impreso ul, .card-audiovisual ul {
+            color: #000 !important;
+            font-size: 0.98rem;
+            text-align: left;
+            margin: 0;
+            padding-left: 18px;
+        }
+        .card-digital li, .card-impreso li, .card-audiovisual li {
+            color: #000 !important;
+        }
+        .card-icon {
+            font-size: 2.5rem;
+            color: #b46345;
+            margin-bottom: 8px;
+            display: block;
+            text-align: center;
+        }
+        body.claro .card-icon {
+            color: #d4af37;
+            text-shadow: 1px 1px 0 #000, -1px -1px 0 #000;
+        }
+        .card-digital.formato-estatico {
+            height: 330px;
+        }
+        .cards-digital-row-60 {
+            display: flex;
+            gap: 32px;
+            width: 60vw;
+            max-width: 60vw;
+            min-width: 260px;
+            margin: 0 auto 32px auto;
+            justify-content: center;
+            align-items: stretch;
+        }
+        .cards-digital-row-60 .card-digital {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .cards-digital-row-60 .card-digital ul {
+            text-align: center;
+            padding-left: 0;
+        }
+        .cards-digital-row-60 .card-digital li {
+            text-align: center;
+        }
+        @media (max-width: 1100px) {
+            .cards-digital-row-60 {
+                width: 98vw;
+                max-width: 98vw;
+                flex-direction: column;
+                gap: 18px;
+            }
+        }
+        .cards-impreso-2x2-60 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 32px;
+            width: 60vw;
+            max-width: 60vw;
+            min-width: 260px;
+            margin: 32px auto;
+            justify-content: center;
+            align-items: center;
+            place-items: center;
+            justify-items: center;
+        }
+        @media (max-width: 1100px) {
+            .cards-impreso-2x2-60 {
+                width: 98vw;
+                max-width: 98vw;
+                grid-template-columns: 1fr;
+                grid-template-rows: none;
+                gap: 18px;
+            }
+        }
+        .cards-audiovisual-2x2-60 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 32px;
+            width: 60vw;
+            max-width: 60vw;
+            min-width: 260px;
+            margin: 32px auto;
+            justify-content: center;
+            align-items: center;
+            place-items: center;
+            justify-items: center;
+        }
+        @media (max-width: 1100px) {
+            .cards-audiovisual-2x2-60 {
+                width: 98vw;
+                max-width: 98vw;
+                grid-template-columns: 1fr;
+                grid-template-rows: none;
+                gap: 18px;
+            }
+        }
+        .card-digital, .card-impreso, .card-audiovisual {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .card-digital ul, .card-impreso ul, .card-audiovisual ul {
+            text-align: center;
+            padding-left: 0;
+        }
+        .card-digital li, .card-impreso li, .card-audiovisual li {
+            text-align: center;
+        }
+        </style>
+        <style>
+/* FORZAR FOOTER RESPONSIVE */
+@media (max-width: 900px) {
+    footer.footer .footer-content {
+        gap: 18px !important;
+    }
+    footer.footer .footer-content .footer-links {
+        gap: 18px !important;
+        margin-bottom: 12px !important;
+    }
+    footer.footer .footer-content .footer-icons {
+        gap: 18px !important;
+        margin-bottom: 12px !important;
+        font-size: 1.3rem !important;
+    }
+    footer.footer .footer-content .footer-info {
+        gap: 12px !important;
+        font-size: 1.15rem !important;
+    }
+    footer.footer .footer-content .footer-icons a > i.fab,
+    footer.footer .footer-content .footer-icons a > i.fas {
+        font-size: 21px !important;
+        width: 21px !important;
+        height: 21px !important;
+        min-width: 21px !important;
+        min-height: 21px !important;
+        max-width: 21px !important;
+        max-height: 21px !important;
+        line-height: 21px !important;
+    }
+}
+@media (max-width: 600px) {
+    footer.footer .footer-content {
+        gap: 10px !important;
+    }
+    footer.footer .footer-content .footer-links {
+        gap: 8px !important;
+        margin-bottom: 6px !important;
+    }
+    footer.footer .footer-content .footer-icons {
+        gap: 8px !important;
+        font-size: 1.05rem !important;
+        flex-wrap: wrap !important;
+        margin-bottom: 6px !important;
+    }
+    footer.footer .footer-content .footer-info {
+        gap: 4px !important;
+        font-size: 1.05rem !important;
+    }
+    footer.footer .footer-content .footer-icons a > i.fab,
+    footer.footer .footer-content .footer-icons a > i.fas {
+        font-size: 17px !important;
+        width: 17px !important;
+        height: 17px !important;
+        min-width: 17px !important;
+        min-height: 17px !important;
+        max-width: 17px !important;
+        max-height: 17px !important;
+        line-height: 17px !important;
+    }
+}
+</style>
     </main>
     <footer class="footer">
         <div class="footer-content">
@@ -91,5 +1022,34 @@
         setTheme(true);
     })();
     </script>
+    <script>
+// Carrusel de imágenes
+(function() {
+    const images = document.querySelectorAll('.carousel-img');
+    const indicators = document.querySelectorAll('.indicator');
+    const leftArrow = document.querySelector('.carousel-arrow.left');
+    const rightArrow = document.querySelector('.carousel-arrow.right');
+    let current = 0;
+    function showImage(idx) {
+        images.forEach((img, i) => {
+            img.classList.toggle('active', i === idx);
+        });
+        indicators.forEach((ind, i) => {
+            ind.classList.toggle('active', i === idx);
+        });
+        current = idx;
+    }
+    leftArrow.addEventListener('click', () => {
+        showImage((current - 1 + images.length) % images.length);
+    });
+    rightArrow.addEventListener('click', () => {
+        showImage((current + 1) % images.length);
+    });
+    indicators.forEach((ind, i) => {
+        ind.addEventListener('click', () => showImage(i));
+    });
+    showImage(0);
+})();
+</script>
 </body>
 </html> 

@@ -6,21 +6,571 @@
     <title>Diseño Web y UX/UI - Carolain</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-     :root {
+     
+    :root {
             --marca-rosa: #c39ea0;
             --marca-rojo: #b46345;
             --marca-beige: #f2e6d8;
             --marca-oro: #d4af37;
             --marca-negro: #000000;
         }
-    </style>
+    body {
+    background: #000;
+    color: #fff;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+    /* Modo claro */
+    body.claro {
+        background: #c39ea0;
+        color: #000;
+    }
+
+    .header {
+    width: 100%;
+    padding: 20px 40px;
+    box-sizing: border-box;
+    text-align: center;
+    background: #000;
+}
+
+/* Eliminar cualquier override de modo claro para el header */
+body.claro .header {
+    background: #000;
+}
+
+    .logo-container {
+        margin-bottom: 30px;
+    }
+
+    .logo {
+        max-width: 190px;
+        height: auto;
+        margin: 0 auto 10px auto;
+        display: block;
+        opacity: 0;
+        transform: scale(0.85);
+        animation: logoFadeIn 1.1s cubic-bezier(.77,0,.18,1) 0.2s forwards;
+        transition: transform 0.3s cubic-bezier(.77,0,.18,1);
+        pointer-events: auto !important;
+        cursor: pointer;
+    }
+    .logo:hover {
+        transform: scale(1.35);
+        filter: drop-shadow(0 0 18px #d4af37) drop-shadow(0 0 32px #d4af37);
+        transition: filter 0.3s;
+    }
+    @keyframes logoFadeIn {
+        from { opacity: 0; transform: scale(0.85); }
+        to { opacity: 1; transform: scale(1); }
+    }
+    @media (max-width: 768px) {
+        .logo { max-width: 130px; }
+    }
+
+    /* Logo dual para modo claro/oscuro */
+    .logo.logo-oscuro {
+        display: block;
+    }
+    .logo.logo-claro {
+        display: none;
+    }
+    body.claro .logo.logo-claro {
+        display: block;
+    }
+
+    /* Estilos para el switch de tema */
+    .theme-switch-btn {
+        background: #FFD700;
+        color: #000;
+        border: none;
+        border-radius: 50px;
+        padding: 10px 28px;
+        font-size: 1.1rem;
+        font-family: inherit;
+        font-weight: bold;
+        margin: 12px 0;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s;
+        position: relative;
+    }
+    .theme-switch-btn:focus {
+        outline: 2px solid #c39ea0;
+    }
+    .theme-switch-btn:hover {
+        background: #c39ea0;
+        color: #000;
+    }
+    body.claro .theme-switch-btn {
+        background: #000;
+        color: #FFD700;
+    }
+    body.claro .theme-switch-btn:hover {
+        background: #c39ea0;
+        color: #000;
+    }
+    /* Icono de tema solo con CSS */
+    .theme-switch-btn .switch-label {
+        display: none;
+    }
+    .theme-switch-btn::after {
+        content: '\f185'; /* fa-sun */
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        font-size: 1.2em;
+        margin-left: 8px;
+        vertical-align: middle;
+        transition: content 0.3s;
+    }
+    body.claro .theme-switch-btn::after {
+        content: '\f186'; /* fa-moon */
+    }
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px;
+}
+@media (max-width: 900px) {
+    .navbar {
+        gap: 18px;
+    }
+    nav a {
+        font-size: 0.98rem;
+        padding: 8px 12px;
+    }
+}
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        margin-top: 12px;
+    }
+    nav a {
+        font-size: 0.95rem;
+        padding: 10px 0;
+        width: 100%;
+        text-align: center;
+        border-radius: 8px;
+    }
+}
+
+nav a {
+    color: #fff !important;
+    text-decoration: none;
+    font-size: 1.1rem;
+    position: relative;
+    transition: color 0.2s;
+        padding: 10px 20px;
+        border-radius: 5px;
+}
+
+/* Eliminar override de modo claro */
+body.claro nav a {
+    color: #f2e6d8 !important;
+}
+
+nav a:hover, nav a:focus {
+    text-shadow: 0 0 8px #FFD700, 0 0 16px #FFD700, 0 0 24px #FFD700;
+    color: #FFD700;
+    transition: text-shadow 0.3s, color 0.3s;
+        background: rgba(255, 215, 0, 0.1);
+    }
+
+    /* Estilos para modo claro en navegación */
+    body.claro nav a {
+        color: #000;
+    }
+    body.claro nav a:hover, body.claro nav a:focus {
+        text-shadow: 0 0 8px #FFD700, 0 0 16px #FFD700, 0 0 24px #FFD700;
+        color: #FFD700;
+        background: rgba(255, 215, 0, 0.1);
+    }
+
+    .main-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 60px 20px;
+        text-align: center;
+    }
+
+footer.footer {
+    background: #000 !important;
+    color: #fff !important;
+    width: 100%;
+    text-align: center;
+    padding: 24px 0 16px 0;
+}
+.footer .footer-icons a,
+.footer .footer-links a {
+    color: #fff !important;
+    transition: color 0.2s, filter 0.2s;
+}
+.footer .footer-icons a:hover,
+.footer .footer-icons a:focus,
+.footer .footer-links a:hover,
+.footer .footer-links a:focus {
+    color: #d4af37 !important;
+    filter: drop-shadow(0 0 8px #d4af37) drop-shadow(0 0 18px #d4af37);
+}
+.footer .footer-icons {
+    height: 27.5px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 22px !important;
+    justify-content: center;
+}
+.footer .footer-icons a {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+.footer .footer-icons a i {
+    font-size: 25px !important;
+    width: 25px !important;
+    height: 25px !important;
+    display: inline-block !important;
+    text-align: center !important;
+    line-height: 25px !important;
+}
+@media (max-width: 600px) {
+    .footer .footer-icons {
+        gap: 14px !important;
+    }
+    .footer .footer-icons a i {
+        font-size: 21px !important;
+        width: 21px !important;
+        height: 21px !important;
+        line-height: 21px !important;
+    }
+}
+
+footer.footer .footer-content .footer-icons {
+    height: 27.5px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 22px !important;
+    justify-content: center !important;
+}
+footer.footer .footer-content .footer-icons a {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+footer.footer .footer-content .footer-icons a i {
+    font-size: 25px !important;
+    width: 25px !important;
+    height: 25px !important;
+    display: inline-block !important;
+    text-align: center !important;
+    line-height: 25px !important;
+}
+@media (max-width: 600px) {
+    footer.footer .footer-content .footer-icons {
+        gap: 14px !important;
+    }
+    footer.footer .footer-content .footer-icons a i {
+        font-size: 21px !important;
+        width: 21px !important;
+        height: 21px !important;
+        line-height: 21px !important;
+    }
+}
+footer.footer .footer-content .footer-icons a > i.fab,
+footer.footer .footer-content .footer-icons a > i.fas {
+    font-size: 25px !important;
+    width: 25px !important;
+    height: 25px !important;
+    min-width: 25px !important;
+    min-height: 25px !important;
+    max-width: 25px !important;
+    max-height: 25px !important;
+    line-height: 25px !important;
+    display: inline-block !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+    box-sizing: content-box !important;
+}
+footer.footer .footer-content .footer-icons {
+    gap: 22px !important;
+}
+@media (max-width: 600px) {
+    footer.footer .footer-content .footer-icons a > i.fab,
+    footer.footer .footer-content .footer-icons a > i.fas {
+        font-size: 21px !important;
+        width: 21px !important;
+        height: 21px !important;
+        min-width: 21px !important;
+        min-height: 21px !important;
+        max-width: 21px !important;
+        max-height: 21px !important;
+        line-height: 21px !important;
+    }
+    footer.footer .footer-content .footer-icons {
+        gap: 14px !important;
+    }
+}
+footer.footer .footer-content .footer-links {
+    margin-bottom: 18px !important;
+}
+footer.footer .footer-content .footer-icons {
+    margin-top: 10px !important;
+}
+@media (max-width: 600px) {
+    footer.footer .footer-content .footer-links {
+        margin-bottom: 10px !important;
+    }
+    footer.footer .footer-content .footer-icons {
+        margin-top: 6px !important;
+    }
+}
+footer.footer .footer-content .footer-links {
+    margin-bottom: 28px !important;
+    padding-bottom: 0 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100% !important;
+    justify-content: center !important;
+}
+footer.footer .footer-content .footer-icons {
+    margin-top: 18px !important;
+    padding-top: 0 !important;
+    width: 100% !important;
+    justify-content: center !important;
+    display: flex !important;
+}
+@media (max-width: 600px) {
+    footer.footer .footer-content .footer-links {
+        margin-bottom: 16px !important;
+    }
+    footer.footer .footer-content .footer-icons {
+        margin-top: 10px !important;
+    }
+}
+footer.footer .footer-content .footer-icons {
+    margin-bottom: 22px !important;
+}
+@media (max-width: 600px) {
+    footer.footer .footer-content .footer-icons {
+        margin-bottom: 14px !important;
+    }
+}
+footer.footer .footer-content .footer-info,
+footer.footer .footer-content .footer-info span,
+footer.footer .footer-content .footer-info i {
+    font-size: 21px !important;
+}
+footer.footer .footer-content {
+    gap: 36px !important;
+}
+footer.footer .footer-content .footer-links {
+    gap: 40px !important;
+    margin-bottom: 24px !important;
+}
+footer.footer .footer-content .footer-icons {
+    gap: 56px !important;
+    margin-bottom: 24px !important;
+    margin-top: 0 !important;
+}
+footer.footer .footer-content .footer-info {
+    gap: 32px !important;
+}
+@media (max-width: 600px) {
+    footer.footer .footer-content {
+        gap: 18px !important;
+    }
+    footer.footer .footer-content .footer-links {
+        gap: 18px !important;
+        margin-bottom: 12px !important;
+    }
+    footer.footer .footer-content .footer-icons {
+        gap: 18px !important;
+        margin-bottom: 12px !important;
+    }
+    footer.footer .footer-content .footer-info {
+        gap: 12px !important;
+    }
+}
+footer.footer .footer-content .footer-links a {
+    color: #fff !important;
+    text-decoration: none !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+    transition: color 0.2s, text-decoration 0.2s !important;
+}
+footer.footer .footer-content .footer-links a:hover,
+footer.footer .footer-content .footer-links a:focus {
+    color: #d4af37 !important;
+    text-decoration: underline !important;
+}
+footer.footer .footer-content {
+    gap: 48px !important;
+}
+footer.footer .footer-content .footer-links {
+    gap: 48px !important;
+    margin-bottom: 36px !important;
+}
+footer.footer .footer-content .footer-icons {
+    gap: 64px !important;
+    margin-bottom: 36px !important;
+    margin-top: 0 !important;
+}
+footer.footer .footer-content .footer-info {
+    gap: 40px !important;
+}
+@media (max-width: 600px) {
+    footer.footer .footer-content {
+        gap: 24px !important;
+    }
+    footer.footer .footer-content .footer-links {
+        gap: 24px !important;
+        margin-bottom: 18px !important;
+    }
+    footer.footer .footer-content .footer-icons {
+        gap: 24px !important;
+        margin-bottom: 18px !important;
+    }
+    footer.footer .footer-content .footer-info {
+        gap: 16px !important;
+    }
+}
+footer.footer {
+    padding: 48px 0px 32px 0px !important;
+}
+.service-cards-container {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  align-items: stretch;
+  margin: 48px 0 32px 0;
+  flex-wrap: wrap;
+}
+.service-card {
+  background: #f2e6d8;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px #c39ea044;
+  width: 320px;
+  max-width: 94vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 0 24px 0;
+  transition: box-shadow 0.2s;
+}
+.service-card-img {
+  width: 320px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 18px 18px 0 0;
+  display: block;
+  margin: 0 auto;
+}
+.service-card-title {
+  color: #b46345;
+  font-size: 1.35rem;
+  margin: 18px 0 8px 0;
+  text-align: center;
+}
+.service-card-desc {
+  color: #000;
+  font-size: 1.08rem;
+  text-align: center;
+  margin: 0 18px;
+}
+@media (max-width: 1000px) {
+  .service-cards-container {
+    gap: 18px;
+  }
+  .service-card {
+    width: 98vw;
+    max-width: 400px;
+  }
+}
+@media (max-width: 700px) {
+  .service-cards-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+  }
+  .service-card {
+    width: 98vw;
+    max-width: 400px;
+  }
+}
+.service-example-btn {
+  display: block;
+  margin: 28px auto 0 auto;
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 14px 38px;
+  font-size: 1.15rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 12px #d4af37cc;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.service-example-btn:hover, .service-example-btn:focus {
+  background: #fff;
+  color: #d4af37;
+  box-shadow: 0 4px 18px #d4af37;
+}
+.service-img {
+  width: 80vw;
+  max-width: 80%;
+  height: auto;
+  display: block;
+  margin: 0 auto 32px auto;
+  border-radius: 18px;
+  object-fit: cover;
+}
+/* Imagen principal de la card de Desarrollo Web */
+.service-card.desarrollo-web .service-img {
+  width: 99%;
+  max-width: 99%;
+  height: 316px;
+  display: block;
+  margin: 0 auto 18px auto;
+  border-radius: 18px;
+  object-fit: cover;
+}
+/* Imagen principal de la card de Diseño UX/UI */
+.service-card.ux-ui .service-card-img {
+  width: 99%;
+  max-width: 99%;
+  height: 316px;
+  display: block;
+  margin: 0 auto 18px auto;
+  border-radius: 18px 18px 0 0;
+  object-fit: cover;
+}
+/* Imagen principal de la card de Optimización */
+.service-card.optimizacion .service-card-img {
+  width: 99%;
+  max-width: 99%;
+  height: 316px;
+  display: block;
+  margin: 0 auto 18px auto;
+  border-radius: 18px 18px 0 0;
+  object-fit: cover;
+}
+/* Asegurar object-fit: cover en todas las imágenes de cards por defecto */
+.service-card-img, .service-card .service-img {
+  object-fit: cover;
+}
+</style>
 </head>
 <body>
     <header class="header">
         <div class="header-center">
            <div class="logo-container">
                 <img id="logo-header-oscuro" class="logo logo-oscuro" src="logo marca profesional carolain rincon produccionesss para modo oscuro_Mesa de trabajo 1.svg" alt="logo carolain producción modo oscuro">
-                <img id="logo-header-claro" class="logo logo-claro" src="logo modo claro 2_Mesa de trabajo 1.svg" alt="logo carolain producción modo claro">
+               
             </div>
             <button id="theme-switch" aria-label="Cambiar modo claro/oscuro" tabindex="0" class="theme-switch-btn">
                 <span class="switch-label"></span>
@@ -37,15 +587,31 @@
     </header>
     <main class="main-content">
         <h1 class="main-title">Diseño Web y UX/UI</h1>
-        <img class="service-img" src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" alt="Diseño Web y UX/UI">
+        <img class="service-img" src="./ejemplo soulmia mooc.png" alt="Diseño Web y UX/UI">
         <div class="service-desc">
-            Transformamos ideas en experiencias digitales excepcionales. Creamos diseños UX/UI intuitivos y visualmente atractivos, optimizados para una navegación fluida. Desde el prototipado hasta el desarrollo web con HTML, CSS y JavaScript, construimos sitios web responsivos y funcionales.
+        Nos enfocamos en ofrecer soluciones centradas en el usuario, cuidando cada detalle del 
+        diseño y la implementación para garantizar una experiencia coherente en todos los 
+        dispositivos. Ya sea una landing page, un portafolio, o una plataforma más compleja, 
+        trabajamos contigo para convertir tus objetivos en productos digitales de alto impacto.
         </div>
-        <ul class="service-list">
-            <li><span>Diseño UX/UI:</span> Prototipado, wireframes y diseño visual.</li>
-            <li><span>Desarrollo Web:</span> HTML, CSS, JavaScript y sitios responsivos.</li>
-            <li><span>Optimización:</span> Experiencia de usuario y rendimiento en todas las plataformas.</li>
-        </ul>
+        <button class="service-example-btn" hrf="https://carolainr.github.io/SOULMIA/index.html">Ver ejemplo</button>
+        <div class="service-cards-container">
+  <div class="service-card ux-ui">
+    <img src="./wireframes.png" alt="Diseño UX/UI" class="service-card-img">
+    <h3 class="service-card-title">Diseño UX/UI</h3>
+    <p class="service-card-desc">Prototipado, wireframes y diseño visual.</p>
+  </div>
+  <div class="service-card desarrollo-web">
+    <img class="service-img" src="./Captura de pantalla 2025-07-14 104723.png" alt="Desarrollo Web">
+    <h3 class="service-card-title">Desarrollo Web</h3>
+    <p class="service-card-desc">HTML, CSS, JavaScript y sitios responsivos.</p>
+  </div>
+  <div class="service-card optimizacion">
+    <img src="./optimizacion.png" alt="Optimización" class="service-card-img">
+    <h3 class="service-card-title">Optimización</h3>
+    <p class="service-card-desc">Experiencia de usuario y rendimiento en todas las plataformas.</p>
+  </div>
+</div>
     </main>
     <footer class="footer">
         <div class="footer-content">

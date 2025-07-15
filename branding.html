@@ -13,6 +13,404 @@
             --marca-oro: #d4af37;
             --marca-negro: #000000;
         }
+            body {
+    background: #000;
+    color: #fff;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+    /* Modo claro */
+    body.claro {
+        background: #c39ea0;
+        color: #000;
+    }
+
+    .header {
+    width: 100%;
+    padding: 20px 40px;
+    box-sizing: border-box;
+    text-align: center;
+    background: #000;
+}
+
+/* Eliminar cualquier override de modo claro para el header */
+body.claro .header {
+    background: #000;
+}
+
+    .logo-container {
+        margin-bottom: 30px;
+    }
+
+    .logo {
+        max-width: 190px;
+        height: auto;
+        margin: 0 auto 10px auto;
+        display: block;
+        opacity: 0;
+        transform: scale(0.85);
+        animation: logoFadeIn 1.1s cubic-bezier(.77,0,.18,1) 0.2s forwards;
+        transition: transform 0.3s cubic-bezier(.77,0,.18,1);
+        pointer-events: auto !important;
+        cursor: pointer;
+    }
+    .logo:hover {
+        transform: scale(1.35);
+        filter: drop-shadow(0 0 18px #d4af37) drop-shadow(0 0 32px #d4af37);
+        transition: filter 0.3s;
+    }
+    @keyframes logoFadeIn {
+        from { opacity: 0; transform: scale(0.85); }
+        to { opacity: 1; transform: scale(1); }
+    }
+    @media (max-width: 768px) {
+        .logo { max-width: 130px; }
+    }
+
+    /* Logo dual para modo claro/oscuro */
+    .logo.logo-oscuro {
+        display: block;
+    }
+    .logo.logo-claro {
+        display: none;
+    }
+    body.claro .logo.logo-claro {
+        display: block;
+    }
+
+    /* Estilos para el switch de tema */
+    .theme-switch-btn {
+        background: #d4af37;
+        color: #000;
+        border: none;
+        border-radius: 50px;
+        padding: 10px 28px;
+        font-size: 1.1rem;
+        font-family: inherit;
+        font-weight: bold;
+        margin: 12px 0;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s;
+        position: relative;
+    }
+    .theme-switch-btn:focus {
+        outline: 2px solid #c39ea0;
+    }
+    .theme-switch-btn:hover {
+        background: #c39ea0;
+        color: #000;
+    }
+    body.claro .theme-switch-btn {
+        background: #000;
+        color: #d4af37;
+    }
+    body.claro .theme-switch-btn:hover {
+        background: #c39ea0;
+        color: #000;
+    }
+    /* Icono de tema solo con CSS */
+    .theme-switch-btn .switch-label {
+        display: none;
+    }
+    .theme-switch-btn::after {
+        content: '\f185'; /* fa-sun */
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        font-size: 1.2em;
+        margin-left: 8px;
+        vertical-align: middle;
+        transition: content 0.3s;
+    }
+    body.claro .theme-switch-btn::after {
+        content: '\f186'; /* fa-moon */
+    }
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px;
+}
+@media (max-width: 900px) {
+    .navbar {
+        gap: 18px;
+    }
+    nav a {
+        font-size: 0.98rem;
+        padding: 8px 12px;
+    }
+}
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        margin-top: 12px;
+    }
+    nav a {
+        font-size: 0.95rem;
+        padding: 10px 0;
+        width: 100%;
+        text-align: center;
+        border-radius: 8px;
+    }
+}
+
+nav a {
+    color: #fff !important;
+    text-decoration: none;
+    font-size: 1.1rem;
+    position: relative;
+    transition: color 0.2s;
+        padding: 10px 20px;
+        border-radius: 5px;
+}
+
+/* Eliminar override de modo claro */
+body.claro nav a {
+    color: #f2e6d8 !important;
+}
+
+nav a:hover, nav a:focus {
+    text-shadow: 0 0 8px #FFD700, 0 0 16px #FFD700, 0 0 24px #FFD700;
+    color: #FFD700;
+    transition: text-shadow 0.3s, color 0.3s;
+        background: rgba(255, 215, 0, 0.1);
+    }
+
+    /* Estilos para modo claro en navegación */
+    body.claro nav a {
+        color: #000;
+    }
+    body.claro nav a:hover, body.claro nav a:focus {
+        text-shadow: 0 0 8px #FFD700, 0 0 16px #FFD700, 0 0 24px #FFD700;
+        color: #FFD700;
+        background: rgba(255, 215, 0, 0.1);
+    }
+        .footer {
+    background: #000;
+    padding: 48px 0 32px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 36px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 24px;
+}
+
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+    color: #d4af37;
+}
+
+    /* Estilos para modo claro en footer */
+    body.claro .footer-links a {
+        color: #fff;
+    }
+    body.claro .footer-links a:hover {
+        color: #d4af37;
+    }
+
+.footer-icons {
+    display: flex;
+    gap: 56px;
+    justify-content: center;
+    font-size: 1.7rem;
+    margin-bottom: 24px;
+}
+@media (max-width: 900px) {
+    .footer-icons {
+        gap: 28px;
+        font-size: 1.3rem;
+    }
+}
+@media (max-width: 600px) {
+    .footer-icons {
+        gap: 14px;
+        font-size: 1.05rem;
+        flex-wrap: wrap;
+    }
+}
+
+.footer-icons a {
+    color: #f2e6d8;
+    transition: text-shadow 0.3s, color 0.3s;
+}
+
+.footer-icons a:hover, .footer-icons a:focus {
+    text-shadow: 0 0 8px #d4af37, 0 0 16px #d4af37;
+    color: #d4af37;
+}
+
+    /* Estilos para modo claro en iconos del footer */
+    body.claro .footer-icons a {
+        color: #f2e6d8;
+    }
+
+.footer-info {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    color: #fff;
+}
+
+.footer-info span {
+    color: #fff !important;
+}
+.footer-info i {
+    color: #d4af37 !important;
+}
+
+body.claro .footer-info span {
+    color: #fff !important;
+}
+
+    /* Estilos para modo claro en info del footer */
+    body.claro .footer-info {
+        color: #333;
+    }
+    .card-row {
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        gap: 32px;
+        width: 80vw;
+        max-width: 1200px;
+        margin: 40px auto 0 auto;
+    }
+    .service-card {
+        background: #f2e6d8;
+        border-radius: 18px;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+        padding: 32px 24px;
+        flex: 1 1 0;
+        min-width: 220px;
+        max-width: 350px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        /* color: #fff; */
+        /* border: 2px solid #d4af37; */
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .service-card h2 {
+        color: #d4af37;
+        font-size: 1.3rem;
+        margin-bottom: 16px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        text-shadow: 1px 1px 0 #000;
+        transition: color 0.2s, text-shadow 0.2s;
+    }
+    body.claro .service-card h2 {
+        color: #fff;
+        text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+    }
+    .service-card p {
+        font-size: 1.1rem;
+        color: #000;
+    }
+    .service-card:hover {
+        transform: translateY(-8px) scale(1.03);
+        box-shadow: 0 8px 32px rgba(212,175,55,0.18);
+        border-color: #fff;
+    }
+    @media (max-width: 900px) {
+        .card-row {
+            flex-direction: column;
+            align-items: center;
+            width: 98vw;
+        }
+        .service-card {
+            max-width: 90vw;
+        }
+    }
+    .pdf-btn {
+        display: inline-block;
+        margin-top: 18px;
+        padding: 10px 28px;
+        background: #d4af37;
+        color: #181818;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        text-decoration: none;
+        box-shadow: 0 2px 8px rgba(212,175,55,0.10);
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        cursor: pointer;
+    }
+    .pdf-btn:hover {
+        background: #181818;
+        color: #d4af37;
+        box-shadow: 0 4px 16px rgba(212,175,55,0.18);
+        border: 2px solid #d4af37;
+    }
+    body.claro .pdf-btn {
+        background: #b46345;
+        color: #fff;
+        border: none;
+    }
+    body.claro .pdf-btn:hover {
+        background: #fff;
+        color: #b46345;
+        border: 2px solid #b46345;
+    }
+    .main-title {
+        text-align: center;
+        margin: 40px 0 30px 0;
+        font-weight: bold;
+        letter-spacing: 2px;
+        font-size: 2.5rem;
+        color: #d4af37;
+        text-shadow: 1px 1px 0 #000;
+        transition: color 0.2s, text-shadow 0.2s;
+    }
+    .service-img {
+        display: block;
+        margin: 0 auto 32px auto;
+        width: 80vw;
+        max-width: 80%;
+        height: auto;
+        border-radius: 18px;
+        object-fit: cover;
+    }
+    .service-desc {
+        margin: 0 auto 28px auto;
+        max-width: 70vw;
+        width: 70vw;
+        font-size: 25px;
+        text-align: center;
+        line-height: 1.7;
+    }
+    body.claro .main-title {
+        color: #fff;
+        text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+    }
     </style>
 </head>
 <body>
@@ -20,7 +418,6 @@
         <div class="header-center">
             <div class="logo-container">
                 <img id="logo-header-oscuro" class="logo logo-oscuro" src="logo marca profesional carolain rincon produccionesss para modo oscuro_Mesa de trabajo 1.svg" alt="logo carolain producción modo oscuro">
-                <img id="logo-header-claro" class="logo logo-claro" src="logo modo claro 2_Mesa de trabajo 1.svg" alt="logo carolain producción modo claro">
             </div>
             <button id="theme-switch" aria-label="Cambiar modo claro/oscuro" tabindex="0" class="theme-switch-btn">
                 <span class="switch-label"></span>
@@ -37,15 +434,25 @@
     </header>
     <main class="main-content">
         <h1 class="main-title">Branding e Identidad Visual</h1>
-        <img class="service-img" src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" alt="Branding e Identidad Visual">
+        <img class="service-img" src="./LOGO SOULMIA  1 JUL 25_Mesa de trabajo 1.png" alt="Branding e Identidad Visual">
         <div class="service-desc">
             Construimos marcas memorables desde sus cimientos. Creamos identidades visuales únicas que comunican la esencia de tu marca, combinando diseño estratégico con creatividad. Desde la conceptualización del logotipo hasta el desarrollo completo de guías de estilo y aplicaciones visuales.
         </div>
-        <ul class="service-list">
-            <li><span>Identidad Visual:</span> Logotipo, paleta de colores, tipografía y elementos gráficos.</li>
-            <li><span>Manual de Marca:</span> Guía de uso y aplicaciones visuales.</li>
-            <li><span>Branding Estratégico:</span> Posicionamiento y coherencia en todos los puntos de contacto.</li>
-        </ul>
+        <div class="card-row">
+            <div class="service-card">
+                <h2>Identidad Visual</h2>
+                <p>Logotipo, paleta de colores, tipografía y elementos gráficos.</p>
+            </div>
+            <div class="service-card">
+                <h2>Manual de Marca</h2>
+                <p>Guía de uso y aplicaciones visuales.</p>
+                <a href="./BRANDBOOK SOULMIA ACADEMY 17 JUN 25.pdf" target="_blank" class="pdf-btn">Ver ejemplo</a>
+            </div>
+            <div class="service-card">
+                <h2>Branding Estratégico</h2>
+                <p>Posicionamiento y coherencia en todos los puntos de contacto.</p>
+            </div>
+        </div>
     </main>
     <footer class="footer">
         <div class="footer-content">

@@ -6,30 +6,293 @@
     <title>Fotografía - Carolain</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { background: #000; color: #fff; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; }
-        .header { width: 100%; padding: 20px 40px; box-sizing: border-box; text-align: center; }
-        .logo-container { margin-bottom: 30px; }
-        .logo { max-width: 200px; height: auto; }
-        .navbar { display: flex; justify-content: center; gap: 40px; margin-top: 20px; }
-        nav a { color: #fff; text-decoration: none; font-size: 1.1rem; position: relative; transition: color 0.2s; padding: 10px 20px; border-radius: 5px; }
-        nav a:hover, nav a:focus { text-shadow: 0 0 8px #FFD700, 0 0 16px #FFD700, 0 0 24px #FFD700; color: #FFD700; background: rgba(255, 215, 0, 0.1); }
-        .main-content { max-width: 900px; margin: 0 auto; padding: 60px 20px; text-align: center; }
-        .main-title { font-size: 2.7rem; font-weight: bold; margin-bottom: 30px; color: #FFD700; text-shadow: 0 0 10px rgba(255,215,0,0.5); }
-        .service-img { width: 100%; max-width: 500px; border-radius: 18px; margin-bottom: 32px; box-shadow: 0 8px 32px 0 rgba(255,215,0,0.15), 0 1.5px 10px 0 rgba(0,0,0,0.45); }
-        .service-desc { font-size: 1.2rem; color: #fff; margin-bottom: 32px; line-height: 1.7; }
-        .service-list { text-align: left; display: inline-block; margin: 0 auto 40px auto; color: #FFD700; font-size: 1.1rem; }
-        .service-list li { margin-bottom: 12px; color: #fff; }
-        .service-list li span { color: #FFD700; font-weight: bold; }
-        .footer { background: transparent; padding: 24px 0 16px 0; display: flex; justify-content: center; align-items: center; margin-top: 80px; }
-        .footer-content { display: flex; flex-direction: column; align-items: center; width: 100%; gap: 12px; }
-        .footer-icons { display: flex; gap: 32px; justify-content: center; font-size: 1.7rem; }
-        .footer-icons a { color: #fff; transition: text-shadow 0.3s, color 0.3s; }
-        .footer-icons a:hover, .footer-icons a:focus { text-shadow: 0 0 8px #FFD700, 0 0 16px #FFD700; color: #FFD700; }
-        .footer-info { display: flex; gap: 32px; justify-content: center; align-items: center; font-size: 1rem; color: #fff; }
-        .footer-info i { margin-right: 8px; color: #FFD700; }
-        @media (max-width: 768px) { .main-title { font-size: 2rem; } .navbar { flex-direction: column; gap: 20px; } .service-img { max-width: 98vw; } }
-    </style>
-    <style>
+        :root {
+        --marca-rosa: #c39ea0;
+        --marca-rojo: #b46345;
+        --marca-beige: #f2e6d8;
+        --marca-oro: #d4af37;
+        --marca-negro: #000000;
+        }
+        body {
+    background: #000;
+    color: #fff;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+    /* Modo claro */
+    body.claro {
+        background: #c39ea0;
+        color: #000;
+    }
+
+    .header {
+    width: 100%;
+    padding: 20px 40px;
+    box-sizing: border-box;
+    text-align: center;
+    background: #000;
+}
+
+/* Eliminar cualquier override de modo claro para el header */
+body.claro .header {
+    background: #000;
+}
+
+    .logo-container {
+        margin-bottom: 30px;
+    }
+
+    .logo {
+        max-width: 190px;
+        height: auto;
+        margin: 0 auto 10px auto;
+        display: block;
+        opacity: 0;
+        transform: scale(0.85);
+        animation: logoFadeIn 1.1s cubic-bezier(.77,0,.18,1) 0.2s forwards;
+        transition: transform 0.3s cubic-bezier(.77,0,.18,1);
+        pointer-events: auto !important;
+        cursor: pointer;
+    }
+    .logo:hover {
+        transform: scale(1.35);
+        filter: drop-shadow(0 0 18px #d4af37) drop-shadow(0 0 32px #d4af37);
+        transition: filter 0.3s;
+    }
+    @keyframes logoFadeIn {
+        from { opacity: 0; transform: scale(0.85); }
+        to { opacity: 1; transform: scale(1); }
+    }
+    @media (max-width: 768px) {
+        .logo { max-width: 130px; }
+    }
+
+    /* Logo dual para modo claro/oscuro */
+    .logo.logo-oscuro {
+        display: block;
+    }
+    .logo.logo-claro {
+        display: none;
+    }
+    body.claro .logo.logo-claro {
+        display: block;
+    }
+
+    /* Estilos para el switch de tema */
+    .theme-switch-btn {
+        background: #d4af37;
+        color: #000;
+        border: none;
+        border-radius: 50px;
+        padding: 10px 28px;
+        font-size: 1.1rem;
+        font-family: inherit;
+        font-weight: bold;
+        margin: 12px 0;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s;
+        position: relative;
+    }
+    .theme-switch-btn:focus {
+        outline: 2px solid #c39ea0;
+    }
+    .theme-switch-btn:hover {
+        background: #c39ea0;
+        color: #000;
+    }
+    body.claro .theme-switch-btn {
+        background: #000;
+        color: #FFD700;
+    }
+    body.claro .theme-switch-btn:hover {
+        background: #c39ea0;
+        color: #000;
+    }
+    /* Icono de tema solo con CSS */
+    .theme-switch-btn .switch-label {
+        display: none;
+    }
+    .theme-switch-btn::after {
+        content: '\f185'; /* fa-sun */
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        font-size: 1.2em;
+        margin-left: 8px;
+        vertical-align: middle;
+        transition: content 0.3s;
+    }
+    body.claro .theme-switch-btn::after {
+        content: '\f186'; /* fa-moon */
+    }
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px;
+}
+@media (max-width: 900px) {
+    .navbar {
+        gap: 18px;
+    }
+    nav a {
+        font-size: 0.98rem;
+        padding: 8px 12px;
+    }
+}
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        margin-top: 12px;
+    }
+    nav a {
+        font-size: 0.95rem;
+        padding: 10px 0;
+        width: 100%;
+        text-align: center;
+        border-radius: 8px;
+    }
+}
+
+nav a {
+    color: #fff !important;
+    text-decoration: none;
+    font-size: 1.1rem;
+    position: relative;
+    transition: color 0.2s;
+        padding: 10px 20px;
+        border-radius: 5px;
+}
+
+/* Eliminar override de modo claro */
+body.claro nav a {
+    color: #f2e6d8 !important;
+}
+
+nav a:hover, nav a:focus {
+    text-shadow: 0 0 8px #FFD700, 0 0 16px #FFD700, 0 0 24px #FFD700;
+    color: #FFD700;
+    transition: text-shadow 0.3s, color 0.3s;
+        background: rgba(255, 215, 0, 0.1);
+    }
+
+    /* Estilos para modo claro en navegación */
+    body.claro nav a {
+        color: #000;
+    }
+    body.claro nav a:hover, body.claro nav a:focus {
+        text-shadow: 0 0 8px #FFD700, 0 0 16px #FFD700, 0 0 24px #FFD700;
+        color: #FFD700;
+        background: rgba(255, 215, 0, 0.1);
+    }
+    .footer {
+    background: #000;
+    padding: 48px 0 32px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 36px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 24px;
+}
+
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+    color: #d4af37;
+}
+
+    /* Estilos para modo claro en footer */
+    body.claro .footer-links a {
+        color: #fff;
+    }
+    body.claro .footer-links a:hover {
+        color: #d4af37;
+    }
+
+.footer-icons {
+    display: flex;
+    gap: 56px;
+    justify-content: center;
+    font-size: 1.7rem;
+    margin-bottom: 24px;
+}
+@media (max-width: 900px) {
+    .footer-icons {
+        gap: 28px;
+        font-size: 1.3rem;
+    }
+}
+@media (max-width: 600px) {
+    .footer-icons {
+        gap: 14px;
+        font-size: 1.05rem;
+        flex-wrap: wrap;
+    }
+}
+
+.footer-icons a {
+    color: #f2e6d8;
+    transition: text-shadow 0.3s, color 0.3s;
+}
+
+.footer-icons a:hover, .footer-icons a:focus {
+    text-shadow: 0 0 8px #d4af37, 0 0 16px #d4af37;
+    color: #d4af37;
+}
+
+    /* Estilos para modo claro en iconos del footer */
+    body.claro .footer-icons a {
+        color: #f2e6d8;
+    }
+
+.footer-info {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    color: #fff;
+}
+
+.footer-info span {
+    color: #fff !important;
+}
+.footer-info i {
+    color: #FFD700 !important;
+}
+
+body.claro .footer-info span {
+    color: #fff !important;
+}
+
+    /* Estilos para modo claro en info del footer */
+    body.claro .footer-info {
+        color: #333;
+    }
+
     .photo-section {
         margin: 60px auto 30px auto;
         max-width: 900px;
@@ -39,20 +302,29 @@
         margin-bottom: 60px;
     }
     .photo-title {
-        color: #FFD700;
+        color: #d4af37;
         font-size: 1.5rem;
         margin: 32px 0 12px 0;
         font-weight: bold;
         letter-spacing: 1px;
     }
+    body.claro .photo-title {
+        color: #fff;
+        text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+    }
     .photo-desc {
         color: #fff;
-        font-size: 1.1rem;
+        font-size: 25px;
         margin-bottom: 18px;
+        max-width: 60vw;
+        width: 60vw;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
     }
     .carousel-foto-container {
-        width: 100%;
-        max-width: 600px;
+        width: 80vw;
+        max-width: 900px;
         margin: 0 auto 0 auto;
         position: relative;
         user-select: none;
@@ -61,27 +333,37 @@
         position: relative;
         overflow: hidden;
         border-radius: 20px;
-        box-shadow: 0 8px 32px 0 rgba(255,215,0,0.15), 0 1.5px 10px 0 rgba(0,0,0,0.45);
+        box-shadow: 0 8px 32px 0 rgba(212,175,55,0.15), 0 1.5px 10px 0 rgba(0,0,0,0.45);
         background: #181818;
+        width: 100%;
+        height: 45vw;
+        max-height: 500px;
+        min-height: 180px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     .carousel-foto .carousel-track {
         display: flex;
         transition: transform 0.7s cubic-bezier(.77,0,.18,1);
         will-change: transform;
+        height: 100%;
     }
     .carousel-foto .carousel-img {
         min-width: 100%;
-        height: 350px;
-        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
         border-radius: 20px;
-        box-shadow: 0 4px 24px rgba(255,215,0,0.10);
+        box-shadow: 0 4px 24px rgba(212,175,55,0.10);
         transition: transform 0.5s, box-shadow 0.5s;
         cursor: pointer;
         background: #000;
+        display: block;
     }
     .carousel-foto .carousel-img:hover {
         transform: scale(1.04) rotate(-1deg);
-        box-shadow: 0 8px 32px rgba(255,215,0,0.18);
+        box-shadow: 0 8px 32px rgba(212,175,55,0.18);
     }
     .carousel-foto .carousel-btn {
         position: absolute;
@@ -89,7 +371,7 @@
         transform: translateY(-50%);
         background: rgba(0,0,0,0.5);
         border: none;
-        color: #FFD700;
+        color: #d4af37;
         font-size: 2rem;
         padding: 10px 18px;
         border-radius: 50%;
@@ -98,7 +380,7 @@
         transition: background 0.2s;
     }
     .carousel-foto .carousel-btn:hover {
-        background: #FFD700;
+        background: #d4af37;
         color: #181818;
     }
     .carousel-foto .carousel-btn.prev { left: 10px; }
@@ -114,26 +396,70 @@
         height: 12px;
         border-radius: 50%;
         border: none;
-        background: #FFD70044;
+        background: #d4af3744;
         cursor: pointer;
         transition: background 0.3s, transform 0.3s;
     }
     .carousel-foto-container .carousel-indicators button.active {
-        background: #FFD700;
+        background: #d4af37;
         transform: scale(1.2);
     }
-    @media (max-width: 768px) {
-        .carousel-foto .carousel-img { height: 200px; }
-        .carousel-foto-container { max-width: 98vw; }
+    @media (max-width: 900px) {
+        .carousel-foto-container {
+            width: 98vw;
+            max-width: 98vw;
+        }
+        .carousel-foto {
+            height: 48vw;
+            max-height: 320px;
+            min-height: 100px;
+        }
+    }
+    @media (max-width: 600px) {
+        .carousel-foto-container {
+            width: 100vw;
+            max-width: 100vw;
+        }
+        .carousel-foto {
+            height: 54vw;
+            max-height: 180px;
+            min-height: 60px;
+        }
+    }
+    .service-img {
+    display: block;
+    margin: 0 auto 32px auto;
+    width: 80vw;
+    max-width: 80%;
+    height: auto;
+    border-radius: 18px;
+    object-fit: cover;
+}
+.service-desc {
+    margin: 0 auto 28px auto;
+    max-width: 70vw;
+    width: 70vw;
+    font-size: 25px;
+    text-align: center;
+    line-height: 1.7;
+}
+    .main-title {
+        color: #fff;
+        text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+        font-size: 3.2rem;
+        text-align: center;
+        margin: 40px 0 30px 0;
+        font-weight: bold;
+        letter-spacing: 2px;
     }
     </style>
+
 </head>
 <body>
     <header class="header">
         <div class="header-center">
            <div class="logo-container">
                 <img id="logo-header-oscuro" class="logo logo-oscuro" src="logo marca profesional carolain rincon produccionesss para modo oscuro_Mesa de trabajo 1.svg" alt="logo carolain producción modo oscuro">
-                <img id="logo-header-claro" class="logo logo-claro" src="logo modo claro 2_Mesa de trabajo 1.svg" alt="logo carolain producción modo claro">
             </div>
             <button id="theme-switch" aria-label="Cambiar modo claro/oscuro" tabindex="0" class="theme-switch-btn">
                 <span class="switch-label"></span>
@@ -150,9 +476,10 @@
     </header>
     <main class="main-content">
         <h1 class="main-title">FOTOGRAFÍA</h1>
-        <img class="service-img" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Fotografía">
+        <img class="service-img" src="./01012015-01. 4 julio Aurora.jpg" alt="Fotografía">
         <div class="service-desc">
-            Capturamos la esencia de cada momento a través de lentes especializadas. Ofrecemos fotografía de producto y publicitaria, documental, fotoperiodística, culinaria y de naturaleza, siempre con un enfoque creativo y profesional.
+            Se captura la esencia de cada momento a través de lentes especializadas. Se ofrece fotografía de producto y publicitaria, documental, 
+            fotoperiodística, culinaria y de naturaleza, siempre con un enfoque creativo y profesional.
         </div>
        
         <div class="photo-section">
@@ -163,29 +490,10 @@
                     <div class="carousel-foto">
                         <button class="carousel-btn prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
                         <div class="carousel-track">
-                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="./26102023-DSC01383 (2).jpg" class="carousel-img">
+                            <img src="./DSCN2037.jpg" class="carousel-img">
+                            <img src="./DSCN2165.jpg" class="carousel-img">
+                            <img src="./DSCN8884.jpg" class="carousel-img">
                         </div>
                         <button class="carousel-btn next" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
                     </div>
@@ -200,27 +508,10 @@
                         <button class="carousel-btn prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
                         <div class="carousel-track">
                             <!-- 20 imágenes, puedes cambiar las URLs -->
-                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="./DSCN2263.jpg" class="carousel-img">
+                            <img src="./DSCN2259.jpg" class="carousel-img">
+                            <img src="./yosoycarolainr barrido-68.jpg" class="carousel-img">
+                            <img src="./paro.jpg" class="carousel-img">
                         </div>
                         <button class="carousel-btn next" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
                     </div>
@@ -235,26 +526,10 @@
                         <button class="carousel-btn prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
                         <div class="carousel-track">
                             <!-- 20 imágenes -->
-                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="./DSCN1919.jpg" class="carousel-img">
+                            <img src="./DSCN1933.jpg" class="carousel-img">
+                            <img src="./DSCN1953.jpg" class="carousel-img">
+                            <img src="DSCN1914.jpg" class="carousel-img">
                         </div>
                         <button class="carousel-btn next" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
                     </div>
@@ -263,32 +538,16 @@
             </div>
             <div class="photo-block">
                 <h2 class="photo-title">FOTOGRAFÍA DE NATURALEZA</h2>
-                <p class="photo-desc">Capturamos la belleza natural en su máxima expresión: paisajes, flora, fauna y detalles únicos del entorno. Imágenes que transmiten la grandeza y la serenidad de la naturaleza.</p>
+                <p class="photo-desc">Se captura la belleza natural en su máxima expresión: paisajes, flora, fauna y detalles únicos del entorno. Imágenes que transmiten la grandeza y la serenidad de la naturaleza.</p>
                 <div class="carousel-foto-container">
                     <div class="carousel-foto">
                         <button class="carousel-btn prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
                         <div class="carousel-track">
                             <!-- 20 imágenes -->
-                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="carousel-img">
-                            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" class="carousel-img">
+                            <img src="./yosoycarolainr barrido-20.jpg" class="carousel-img">
+                            <img src="./yosoycarolainr barrido-39.jpg" class="carousel-img">
+                            <img src="./01012015-25-2.jpg" class="carousel-img">
+                            <img src="yosoycarolainr barrido-6.jpg" class="carousel-img">
                         </div>
                         <button class="carousel-btn next" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
                     </div>
@@ -300,8 +559,8 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-links">
-                <a href="#" title="Terminos y condiciones">Terminos y Condiciones</a>
-                <a href="#" title="Politicas de privacidad">Politicas de privacidad</a>
+                <a href="./terminosycondiciones.html" title="Terminos y condiciones">Terminos y Condiciones</a>
+                <a href="./politicasdeprivacidad.html" title="Politicas de privacidad">Politicas de privacidad</a>
             </div>
             <div class="footer-icons">
                 <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
@@ -402,6 +661,8 @@
         });
         setTheme(true);
     })();
+    </script>
+    <script>
     </script>
 </body>
 </html> 
